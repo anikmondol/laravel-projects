@@ -1,0 +1,72 @@
+/* register.blade */
+body {
+    background: #91DDCF;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background: #F7F9F2;
+    width: 450px
+}
+
+.form-container input {
+    width: 400px
+}
+
+.form-container img{
+    width: 35px;
+}
+
+.form-container button{
+    background-color: blue;
+    margin-bottom: 5px;
+}
+
+.form-container button:hover{
+    background-color: rgb(65, 65, 220);
+}
+
+/* login */
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 5px;
+    width: 20px;
+}
+
+
+
+/* tablet device */
+
+@media screen and (max-width: 992px) {}
+
+
+/* mobile device */
+
+
+@media screen and (max-width: 576px) {
+
+    .form-container {
+        background: #F7F9F2;
+        width: 380px;
+    }
+
+    .form-container input {
+        width: 320px;
+    }
+
+    .form-container button {
+        width: 320px;
+    }
+
+
+}
