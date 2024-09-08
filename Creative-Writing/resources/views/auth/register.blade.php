@@ -87,9 +87,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Register || creative-writing</title>
+    <link rel="shortcut icon" href="{{ asset('dashboard') }}/assets/images/neptune.png">
+
+
     @vite('resources/css/app.css')
 
-    <link rel="shortcut icon" href="{{ asset('dashboard') }}/assets/images/neptune.png">
 
     {{-- auth css file links --}}
     <link href="{{ asset('dashboard') }}/assets/css/auth.css" rel="stylesheet" type="text/css">
@@ -101,9 +103,9 @@
 </head>
 <body>
     <div class="relative flex flex-col justify-center overflow-hidden">
-        <div class="p-6 m-auto rounded-md shadow-2xl form-container">
+        <div class="p-6 m-auto rounded-md shadow-md form-container">
            <div class="flex items-center justify-center gap-2">
-            <h1 class="text-2xl font-semibold text-center text-gray-700">Creative-Writing</h1>
+            <h1 class="text-xl font-black text-center text-gray-700">Creative-Writing</h1>
             <img src="{{ asset('dashboard') }}/assets/images/neptune.png" alt="">
            </div>
             <form action="{{ route('register') }}" method="POST" class="space-y-2">
@@ -139,13 +141,15 @@
                     <label class="label">
                         <span class="text-sm label-text">Confirm Password</span>
                     </label>
-                    <input name="password_confirmation" type="password" placeholder="Confirm Password" class="text-sm  input input-bordered @error('password_confirmation') is-invalid @enderror"/>
-                    @error('password_confirmation')
-                    <span class="text-red-600">{{ $message }}</span>
-                    @enderror
+                    <input name="password_confirmation" type="password" placeholder="Confirm Password" class="text-sm  input input-bordered @error('password_confirmation') is-invalid @enderror" value="{{ old('password_confirmation') }}"/>
+                </div>
+                <div class="remember-me">
+                    <input type="checkbox" id="remember-me-checkbox" />
+                    <label class="form-check-label ms-2" for="checkbox-signin">I accept <a
+                        href="#">Terms and Conditions</a></label>
                 </div>
                 <div>
-                    <button type="submit" class="btn hover:duration-700 btn-block mt-4 text-white">Register Account</button>
+                    <button type="submit" class="btn hover:duration-700 btn-block mt-4 text-white">Sign Up</button>
                 </div>
             </form>
         </div>

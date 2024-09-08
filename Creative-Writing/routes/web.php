@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,4 +11,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [FrontendController::class, 'index'])->name('root');
+
+
+// dashboard
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+
+// profile
+Route::get('/home/profile',[ProfileController::class,'index'])->name('home.profile');

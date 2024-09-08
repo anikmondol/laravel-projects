@@ -98,9 +98,9 @@
 
 <body>
     <div class="relative flex flex-col justify-center overflow-hidden">
-        <div class="p-6 m-auto rounded-md shadow-2xl form-container">
+        <div class="p-6 m-auto rounded-md shadow-md form-container">
             <div class="flex items-center justify-center gap-2 pb-5">
-                <h1 class="text-2xl font-semibold text-center text-gray-700">Creative-Writing</h1>
+                <h1 class="text-xl font-black text-center text-gray-700">Creative-Writing</h1>
                 <img src="{{ asset('dashboard') }}/assets/images/neptune.png" alt="">
             </div>
             <form action="{{ route('login') }}" method="POST"class="space-y-2">
@@ -126,7 +126,7 @@
                     @enderror
                 </div>
                 <div class="remember-me">
-                    <input type="checkbox" id="remember-me-checkbox" />
+                    <input name="remember" type="checkbox" id="remember-me-checkbox" />
                     <label for="remember-me-checkbox">Remember me</label>
                 </div>
                 <div>
@@ -137,7 +137,7 @@
         </div>
         <div class="text-center mt-4">
             @if (Route::has('password.request'))
-                <p class="text-[#F7F9F2]"> <a href='{{ route('password.request') }}'>Forgot
+                <p class=""> <a href='{{ route('password.request') }}'>Forgot
                         your
                         password?</a></p>
             @endif
