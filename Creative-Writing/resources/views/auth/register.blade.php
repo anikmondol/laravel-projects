@@ -155,7 +155,7 @@
         </div>
         <div class="text-center mt-4">
             <span class="">Already have an account ?
-                <a href="{{ route('login') }}" class=" text-blue-600 hover:text-blue-800 hover:underline">Login</a></span>
+                <a href="{{ route('login') }}" class=" text-blue-600 hover:text-blue-800 hover:underline">Log In</a></span>
         </div>
     </div>
 </body>

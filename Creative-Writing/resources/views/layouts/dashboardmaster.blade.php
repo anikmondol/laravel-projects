@@ -9,12 +9,16 @@
     <title>Creative-Writing || Dashboard</title>
     <link rel="shortcut icon" href="{{ asset('dashboard') }}/assets/images/neptune.png">
 
-     {{-- font-awesome cdn links --}}
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- font-awesome cdn links --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 
 </head>
 
-<body class="text-gray-800 font-inter">
+<body class="text-gray-600 font-inter" style="margin-bottom: 30px">
 
     <!-- start: Sidebar -->
     <div class="fixed left-0 top-0 w-64 h-full bg-gray-900 p-4 z-50 sidebar-menu transition-transform">
@@ -184,6 +188,9 @@
                         </div>
                     </div>
                 </li>
+                <li>
+
+                </li>
                 <li class="dropdown">
                     <button type="button"
                         class="dropdown-toggle text-gray-400 w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
@@ -327,14 +334,17 @@
                         </div>
                     </div>
                 </li>
-                <div class="flex items-center">
+                <li class="flex items-center">
+                    <li class="ml-1 text-sm"> {{ Auth::user()->name }} </li>
                     <li class="dropdown ml-3">
                         <button type="button" class="dropdown-toggle flex items-center">
-                            <img src="{{ asset('dashboard') }}/assets/images/users/avatar-8.jpg" alt=""
-                                class="w-8 h-8 rounded-full block object-cover align-middle">
+                            @if (auth()->user()->image == 'default.jpg')
+                                <img src="{{ asset('uploads/default') }}/{{ auth()->user()->image }}" alt="user-image"  class="w-8 h-8 rounded-full block object-cover align-middle">
+                                @else
+                                <img src="{{ asset('uploads/profile') }}/{{ auth()->user()->image }}" alt="user-image"  class="w-8 h-8 rounded-full block object-cover align-middle">
+                                @endif
                         </button>
-                        <ul
-                            class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
+                        <ul class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
                             <li>
                                 <a href="#"
                                     class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Profile</a>
@@ -352,22 +362,9 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="ml-1 text-sm"> {{ Auth::user()->name }} </li>
-                </div>
+                </li>
             </ul>
         </div>
-
-        <div class="flex items-center justify-between py-2 mt-4 px-4">
-            <h1 class="text-gray-600 font-bold">Dashboard</h1>
-            <div class="flex items-center text-gray-600">
-                <a href="#" class="">
-                    <span class="text-sm">Creative-Writing</span>
-                    <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
-                </a>
-                <p class="text-sm">Dashboard</p>
-            </div>
-        </div>
-
         {{-- content --}}
         <section class=" px-4">
             @yield('content')

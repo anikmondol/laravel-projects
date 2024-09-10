@@ -130,7 +130,7 @@
                     <label for="remember-me-checkbox">Remember me</label>
                 </div>
                 <div>
-                    <button type="submit" class="btn hover:duration-700 btn-block text-white">Register Account</button>
+                    <button type="submit" class="btn hover:duration-700 btn-block text-white">Log In</button>
                 </div>
 
             </form>
@@ -143,7 +143,7 @@
             @endif
             <span>Don't have an account yet?
                 <a href="{{ route('register') }}"
-                    class="text-blue-600 hover:text-blue-800 hover:underline">Register</a></span>
+                    class="text-blue-600 hover:text-blue-800 hover:underline">Sing Up</a></span>
         </div>
     </div>
 </body>

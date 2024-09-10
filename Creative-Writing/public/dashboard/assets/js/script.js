@@ -202,3 +202,27 @@ function generateRandomData(n) {
     return data
 }
 // end: Chart
+
+// navbar
+// Get the navbar element
+const navbar = document.getElementById("header");
+
+// Get the offset position of the navbar
+const sticky = navbar.offsetTop + 200;
+
+// Add the sticky class to the navbar when you reach its scroll position
+// Remove the sticky class when you leave the scroll position
+function stickyNavbar() {
+    console.log(window.pageYOffset);
+    if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky");
+        navbar.classList.add("bg-blue-300");
+    } else {
+        navbar.classList.remove("sticky");
+        navbar.classList.remove("bg-blue-300");
+    }
+}
+// When the user scrolls the page, execute stickyNavbar
+window.onscroll = function() {
+    stickyNavbar();
+};
