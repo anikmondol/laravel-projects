@@ -2,6 +2,24 @@
 
 
 @section('content')
+    <!-- start page title -->
+    <div class="py-3 py-lg-4">
+        <div class="row">
+            <div class="col-lg-6">
+                <h4 class="page-title mb-0">Dashboard</h4>
+            </div>
+            <div class="col-lg-6">
+                <div class="d-none d-lg-block">
+                    <ol class="breadcrumb m-0 float-end">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dashtrap</a></li>
+                        <li class="breadcrumb-item active">Profile</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
     <div class="row">
         {{-- name update --}}
         <div class="col-xl-6">
@@ -28,7 +46,7 @@
                                 id="floatingnameInput" placeholder="Enter Name" name="name" value="{{ old('name') }}">
                             <label for="floatingnameInput">Name</label>
                             @error('name')
-                                <p class="text-danger">{{ $message }}</p>
+                                <p class="text-danger text-center pt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div>
@@ -41,43 +59,43 @@
             <!-- end card -->
         </div>
 
-       {{-- name update --}}
-       <div class="col-xl-6">
-        {{-- success msg --}}
-        @if (session('email_update'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="mdi mdi-check-all me-2"></i>
-                {{ session('email_update') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-        {{-- success msg --}}
-        <div class="card">
-            <div class="card-body">
-                <h5 class="header-title">UserEmail Update</h5>
+        {{-- email update --}}
+        <div class="col-xl-6">
+            {{-- success msg --}}
+            @if (session('email_update'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="mdi mdi-check-all me-2"></i>
+                    {{ session('email_update') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            {{-- success msg --}}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="header-title">UserEmail Update</h5>
 
-                <form action="{{ route('home.profile.email.update') }}" method="POST">
-                    @csrf
-                    <div class="form-floating mb-3">
-                        <input type="text"
-                            class="form-control @error('name')
+                    <form action="{{ route('home.profile.email.update') }}" method="POST">
+                        @csrf
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                class="form-control @error('email')
                     is-invalid
                     @enderror"
-                            id="floatingnameInput" placeholder="Enter Name" name="email" value="{{ old('email') }}">
-                        <label for="floatingnameInput">email</label>
-                        @error('email')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary w-md">Submit</button>
-                    </div>
-                </form>
+                                id="floatingnameInput" placeholder="Enter Name" name="email" value="{{ old('email') }}">
+                            <label for="floatingnameInput">email</label>
+                            @error('email')
+                                <p class="text-danger text-center pt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary w-md">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- end card body -->
             </div>
-            <!-- end card body -->
+            <!-- end card -->
         </div>
-        <!-- end card -->
-    </div>
 
 
         {{-- password update --}}
@@ -106,7 +124,7 @@
                                 value="{{ old('current_password') }}">
                             <label for="floatingnameInput">Current Password</label>
                             @error('current_password')
-                                <p class="text-danger">{{ $message }}</p>
+                                <p class="text-danger text-center pt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -119,7 +137,7 @@
                                 value="{{ old('password') }}">
                             <label for="floatingnameInput">Password</label>
                             @error('password')
-                                <p class="text-danger">{{ $message }}</p>
+                                <p class="text-danger text-center pt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -142,7 +160,6 @@
             </div>
             <!-- end card -->
         </div>
-
         {{-- image update --}}
         <div class="col-xl-6">
             {{-- success msg --}}
@@ -158,12 +175,13 @@
                 <div class="card-body">
                     <h5 class="header-title">Image Update</h5>
 
-                    <form action="{{ route('home.profile.image.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('home.profile.image.update') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-floating mb-3">
                             <picture class="d-block my-4">
-                                <img id="port_img" src="{{ asset('uploades/default/default1.jpg') }}" alt="portfolio create image"
-                                    style="width: 100%; height: 108px; object-fit:contain;">
+                                <img id="port_img" src="{{ asset('uploades/default/default1.jpg') }}"
+                                    alt="portfolio create image" style="width: 100%; height: 108px; object-fit:contain;">
                             </picture>
                             <input type="file"
                                 onchange="document.getElementById('port_img').src= window.URL.createObjectURL(this.files[0])"
@@ -171,9 +189,9 @@
                         is-invalid
                         @enderror"
                                 id="floatingnameInput" placeholder="Choice Your Image" name="image"
-                                value="{{ old('image') }}">
+                                value="{{ old('image') }}" style="padding: 18px">
                             @error('image')
-                                <p class="text-danger">{{ $message }}</p>
+                                <p class="text-danger text-center pt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div>

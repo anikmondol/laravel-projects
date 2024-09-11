@@ -1,9 +1,8 @@
 <?php
 
-
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,3 +26,8 @@ Route::post('/home/profile/email/update', [ProfileController::class,'email_updat
 Route::post('/home/profile/password/update', [ProfileController::class,'password_update'])->name('home.profile.password.update');
 // image update
 Route::post('/home/profile/image/update', [ProfileController::class,'image_update'])->name('home.profile.image.update');
+
+
+
+Route::get('/category',[CategoryController::class,'index'])->name('category.index');
+Route::post('/category/store',[CategoryController::class,'store'])->name('category.store');
