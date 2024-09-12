@@ -35,7 +35,7 @@
                         <div class="">
                             <label class="font-medium" for="">User Name</label>
                         </div>
-                        <input type="text" name="name" name="floating_email" id="floating_email"
+                        <input type="text" name="name" id="floating_email"
                             class="text-sm @error('name')
                     is-invalid
                     @enderror"
@@ -70,7 +70,7 @@
                         <div class="">
                             <label class="font-medium" for="">User Email</label>
                         </div>
-                        <input type="text" name="email" name="floating_email" id="floating_email"
+                        <input type="text" name="email" id="floating_email"
                             class="text-sm @error('current_password')
                         is-invalid
                         @enderror"
@@ -105,7 +105,7 @@
                         <div class="">
                             <label class="font-medium" for="">Current Password</label>
                         </div>
-                        <input type="password" name="current_password" name="floating_email" id="floating_email"
+                        <input type="password" name="current_password" id="floating_email"
                             class="text-sm @error('current_password')
                      is-invalid
                      @enderror"
@@ -118,7 +118,7 @@
                         <div class="">
                             <label class="font-medium" for="">New Password</label>
                         </div>
-                        <input type="password" name="password" name="floating_email" id="floating_email"
+                        <input type="password" name="password" id="floating_email"
                             class="text-sm @error('password')
                      is-invalid
                      @enderror"
@@ -131,7 +131,7 @@
                         <div class="">
                             <label class="font-medium" for="">Confirem Password</label>
                         </div>
-                        <input type="password" name="password_confirmation" name="floating_email" id="floating_email"
+                        <input type="password" name="password_confirmation" id="floating_email"
                             class="text-sm @error('password_confirmation')
                      is-invalid
                      @enderror"
@@ -146,12 +146,12 @@
         </div>
 
 
-        {{-- password update --}}
+        {{-- image update --}}
         <div>
             {{-- success msg --}}
             @if (session('image_update'))
                 <div class="success-text flex justify-center items-center text-base font-medium" style="gap: 10px">
-                    <i class="fa-solid fa-user-lock text-xl"></i>
+                    <i class="fa-regular fa-image text-xl"></i>
                     <span> {{ session('image_update') }} </span>
                 </div>
             @endif
@@ -168,7 +168,7 @@
                             <img id="port_img" src="{{ asset('uploads/default/default1.jpg') }}" alt="portfolio create image"
                                 style="width: 100%; height: 205px; object-fit:contain;">
                         </picture>
-                        <input type="file" onchange="document.getElementById('port_img').src= window.URL.createObjectURL(this.files[0])" name="image" name="floating_email" id="floating_email"
+                        <input type="file" onchange="document.getElementById('port_img').src= window.URL.createObjectURL(this.files[0])" name="image" id="floating_email"
                             class="text-sm @error('image')
                      is-invalid
                      @enderror" />

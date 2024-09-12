@@ -9,6 +9,9 @@
     <title>Creative-Writing || Dashboard</title>
     <link rel="shortcut icon" href="{{ asset('dashboard') }}/assets/images/neptune.png">
 
+    {{-- toastify css links --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     {{-- font-awesome cdn links --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -42,18 +45,18 @@
                     <span class="text-sm">Profile</span>
                 </a>
             </li>
-            <li class="mb-1 group">
-                <a href="#"
-                    class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                    <i class="ri-flashlight-line mr-3 text-lg"></i>
-                    <span class="text-sm">Services</span>
-                    <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
+
+
+            <li class="mb-1 group {{ request()->is('category') ? 'active selected' : '' }}">
+                <a href=''
+                    class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+                    <i class="fa-solid fa-list  mr-3"></i>
+                    <span class="text-sm">categories</span>
                 </a>
                 <ul class="pl-7 mt-2 hidden group-[.selected]:block">
                     <li class="mb-4">
-                        <a href="#"
-                            class="text-gray-300 text-sm flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Manage
-                            services</a>
+                        <a href=" {{route('category.index')}} "
+                            class="text-gray-300 text-sm flex items-center hover:text-gray-100">1 . Show Categories</a>
                     </li>
                 </ul>
             </li>
@@ -357,7 +360,8 @@
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button type="submit"
-                                        class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Logout</button>
+                                        class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">
+                                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>  Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -374,9 +378,17 @@
     </main>
     <!-- end: Main -->
 
+    {{-- outer js links --}}
     <script src="https://unpkg.com/@popperjs/core@2"></script>
 
+    {{-- dashbord js links --}}
     <script src="{{ asset('dashboard') }}/assets/js/script.js"></script>
+
+    {{-- toastify js links --}}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    @yield('script')
+
 </body>
 
 </html>

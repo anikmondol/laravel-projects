@@ -1335,7 +1335,7 @@ video {
 }
 
 
-/* profile */
+/* profile start*/
 
 .profile-grid-container{
     display: grid;
@@ -1457,6 +1457,76 @@ video {
 .profile-form-max button:hover{
     background-color: rgb(8, 75, 81);
 }
+
+/* profile start*/
+
+/* Category start*/
+
+.category-category-insert {
+    border: 1px solid rgb(127, 125, 125);
+    box-shadow: 2px 2px 2px wheat;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.category-category-insert form{
+    margin-top: 30px;
+}
+
+.category-category-insert:hover {
+    box-shadow: 3px 3px 4px rgb(187, 177, 177);
+}
+
+.category-category-insert label {
+    width: 100%;
+
+}
+
+.category-category-insert input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(68, 63, 63);
+    margin: 20px 0px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.category-category-insert input:hover {
+    border: 1px solid rgb(86, 15, 216);
+
+}
+
+.text-danger{
+    color: red;
+    margin: 10px 0px;
+    margin-top: 0px;
+}
+
+.success-text{
+    color: rgb(46, 219, 46);
+    background-color: #dfdfdf;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.category-category-insert button{
+    background-color: #2269F5;
+    color: wheat;
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 8px;
+    font-weight: 500;
+    transition: all 1s;
+}
+
+.category-category-insert button:hover{
+    background-color: rgb(8, 75, 81);
+}
+
+
+/* Category start*/
+
 
 
 /* dashboard responsive */

@@ -12,8 +12,8 @@
             </a>
             <p class="text-sm">Dashboard</p>
         </div>
-
     </div>
+    <hr class="hr">
 
     <h1>Dashboard</h1>
 @endsection
