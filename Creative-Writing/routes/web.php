@@ -32,3 +32,5 @@ Route::post('/home/profile/image/update', [ProfileController::class, 'image_upda
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
 // Category Insert
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+// Category edit
+Route::get('/category/edit{id}', [CategoryController::class, 'edit'])->name('category.edit');

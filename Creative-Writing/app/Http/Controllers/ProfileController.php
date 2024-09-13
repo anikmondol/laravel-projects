@@ -29,7 +29,7 @@ class ProfileController extends Controller
             'updated_at' => now(),
         ]);
 
-        return back()->with('name_update', "name update successful $old_name to $request->name");
+        return back()->with('profile_update', "name update successful $old_name to $request->name");
     }
 
     public function email_update(Request $request)
@@ -43,7 +43,7 @@ class ProfileController extends Controller
             'updated_at' => now(),
         ]);
 
-        return back()->with('email_update', "email update successful");
+        return back()->with('profile_update', "email update successful");
     }
 
 
@@ -61,9 +61,9 @@ class ProfileController extends Controller
                 'updated_at' => now(),
             ]);
 
-            return back()->with('password_update', "Password update successful");
+            return back()->with('profile_update', "Password update successful");
         } else {
-            return back()->withErrors(["current_password" => "authorization didn't match"])->withInput();
+            return back()->withErrors(["profile_update" => "authorization didn't match"])->withInput();
         }
     }
 
@@ -90,7 +90,7 @@ class ProfileController extends Controller
                 'image' => $new_name,
                 'updated_at' => now(),
             ]);
-            return back()->with('image_update', "Image update successful");
+            return back()->with('profile_update', "Image update successful");
         }
     }
 }

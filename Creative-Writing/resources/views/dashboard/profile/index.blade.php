@@ -20,12 +20,12 @@
         {{-- name update --}}
         <div>
             {{-- success msg --}}
-            @if (session('name_update'))
+            {{-- @if (session('name_update'))
                 <div class="success-text flex justify-center items-center text-base font-medium" style="gap: 10px">
                     <i class="fa-regular fa-thumbs-up  text-xl"></i>
                     <span> {{ session('name_update') }} </span>
                 </div>
-            @endif
+            @endif --}}
             {{-- success msg --}}
             <div class="profile-form">
                 <h2 class="flex justify-center items-center font-medium">NAME-UPDATE</h2>
@@ -55,12 +55,12 @@
         {{-- email update --}}
         <div>
             {{-- success msg --}}
-            @if (session('email_update'))
+            {{-- @if (session('email_update'))
                 <div class="success-text flex justify-center items-center text-base font-medium" style="gap: 10px">
                     <i class="fa-regular fa-envelope text-xl"></i>
                     <span> {{ session('email_update') }} </span>
                 </div>
-            @endif
+            @endif --}}
             {{-- success msg --}}
             <div class="profile-form">
                 <h2 class="flex justify-center items-center font-medium">EMAIL-UPDATE</h2>
@@ -90,12 +90,12 @@
         {{-- password update --}}
         <div>
             {{-- success msg --}}
-            @if (session('password_update'))
+            {{-- @if (session('password_update'))
                 <div class="success-text flex justify-center items-center text-base font-medium" style="gap: 10px">
                     <i class="fa-solid fa-user-lock text-xl"></i>
                     <span> {{ session('password_update') }} </span>
                 </div>
-            @endif
+            @endif --}}
             {{-- success msg --}}
             <div class="profile-form-max">
                 <h2 class="flex justify-center items-center font-medium">PASSWORD-UPDATE</h2>
@@ -149,12 +149,12 @@
         {{-- image update --}}
         <div>
             {{-- success msg --}}
-            @if (session('image_update'))
+            {{-- @if (session('image_update'))
                 <div class="success-text flex justify-center items-center text-base font-medium" style="gap: 10px">
                     <i class="fa-regular fa-image text-xl"></i>
                     <span> {{ session('image_update') }} </span>
                 </div>
-            @endif
+            @endif --}}
             {{-- success msg --}}
             <div class="profile-form-max">
                 <h2 class="flex justify-center items-center font-medium">IMAGE-UPDATE</h2>
@@ -165,10 +165,12 @@
                             <label class="font-medium" for="">Image</label>
                         </div>
                         <picture class="d-block my-4">
-                            <img id="port_img" src="{{ asset('uploads/default/default1.jpg') }}" alt="portfolio create image"
-                                style="width: 100%; height: 205px; object-fit:contain;">
+                            <img id="port_img" src="{{ asset('uploads/default/default1.jpg') }}"
+                                alt="portfolio create image" style="width: 100%; height: 205px; object-fit:contain;">
                         </picture>
-                        <input type="file" onchange="document.getElementById('port_img').src= window.URL.createObjectURL(this.files[0])" name="image" id="floating_email"
+                        <input type="file"
+                            onchange="document.getElementById('port_img').src= window.URL.createObjectURL(this.files[0])"
+                            name="image" id="floating_email"
                             class="text-sm @error('image')
                      is-invalid
                      @enderror" />
@@ -193,3 +195,25 @@
 
     </section>
 @endsection
+
+@section('script')
+    @if (session('profile_update'))
+        <script>
+            Toastify({
+                text: "{{ session('profile_update') }}",
+                duration: 5000,
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                onClick: function() {} // Callback after click
+            }).showToast();
+        </script>
+    @endif
+@endsection
+
+

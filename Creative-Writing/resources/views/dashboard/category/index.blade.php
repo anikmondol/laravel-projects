@@ -21,7 +21,7 @@
                 style="margin-top: 10px; border-radius: 5px; border: 1px solid rgb(169, 148, 148)">
                 <h1 class="flex items-center justify-center font-medium text-[22px] mb-2 mt-2">Category Table</h1>
                 <table class="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
-                    <thead class="text-xs" style="padding: 15px; background: rgb(116, 113, 120)">
+                    <thead class="text-xs" style="padding: 15px; background: rgb(35, 33, 36)">
                         <tr>
                             <th scope="col" style="padding: 20px; color: white">
                                 #
@@ -42,21 +42,30 @@
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
-                            <tr class="bg-blue-500 border-b border-blue-400">
+                            <tr class=" border-b border-blue-400">
                                 <th scope="row" class="px-6 py-4" style="padding: 20px">
                                     {{ $loop->index + 1 }}
                                 </th>
                                 <td class="px-6 py-4" style="padding: 20px 5px">
-                                    <img src="{{ asset('uploads/category') }}/{{ $category->image }}" alt="category image" style="height: 70px">
+                                    <img src="{{ asset('uploads/category') }}/{{ $category->image }}" alt="category image"
+                                        style="height: 70px">
                                 </td>
                                 <td class="px-6 py-4" style="padding: 20px 5px">
                                     {{ $category->title }}
                                 </td>
                                 <td class="px-6 py-4" style="padding: 20px 5px;">
-                                    <span style="background: red; padding: 5px; color: white; border-radius: 4px">{{ $category->status }}</span>
+                                    <span
+                                        style="background: rgb(192, 18, 18); padding: 5px; color: white; border-radius: 4px">{{ $category->status }}</span>
                                 </td>
-                                <td class="px-6 py-4" style="padding: 20px 5px">
-                                    <a href="#" class="font-medium text-white hover:underline">Edit</a>
+                                <td class="px-6 py-4 text-white" style="padding: 20px 5px">
+                                    <a class="rounded-md" href="{{ route('category.edit', $category->id) }}"
+                                        style="background-color: #2269F5; padding: 12px; margin-right: 5px">
+                                        <i class="fa-regular fa-pen-to-square text-xl"></i>
+                                    </a>
+                                    <a class="rounded-md" href=""
+                                        style="background-color: rgb(192, 10, 10); padding: 12px; margin-right: 5px">
+                                        <i class="fa-regular fa-trash-can text-xl"></i>
+                                    </a>
                                 </td>
                             </tr>
                             <hr>
@@ -89,7 +98,7 @@
                             <div class="">
                                 <label class="font-medium text-sm" for="">Category Slug</label>
                             </div>
-                            <input type="text" name="slug" name="floating_email" id="floating_email"
+                            <input type="text" name="slug" id="floating_email"
                                 class="text-sm @error('slug')
                     is-invalid
                     @enderror"
