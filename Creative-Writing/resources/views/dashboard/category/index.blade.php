@@ -62,7 +62,7 @@
                                         style="background-color: #2269F5; padding: 12px; margin-right: 5px">
                                         <i class="fa-regular fa-pen-to-square text-xl"></i>
                                     </a>
-                                    <a class="rounded-md" href=""
+                                    <a class="rounded-md"  href="{{ route('category.delete', $category->id) }}"
                                         style="background-color: rgb(192, 10, 10); padding: 12px; margin-right: 5px">
                                         <i class="fa-regular fa-trash-can text-xl"></i>
                                     </a>
