@@ -12,6 +12,9 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Myra Studio" name="author" />
 
+    {{-- toastify msg links --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('dashboard') }}/assets/images/favicon.ico">
 
@@ -471,6 +474,12 @@
 
     <!-- Dashboard init-->
     <script src="{{ asset('dashboard') }}/assets/js/pages/dashboard.js"></script>
+
+    {{-- toastify js links --}}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    @yield('script')
+
 
 </body>
 

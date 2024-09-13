@@ -12,7 +12,7 @@
                 <div class="d-none d-lg-block">
                     <ol class="breadcrumb m-0 float-end">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Dashtrap</a></li>
-                        <li class="breadcrumb-item active">Categories</li>
+                        <li class="breadcrumb-item active">Category</li>
                     </ol>
                 </div>
             </div>
@@ -20,42 +20,45 @@
     </div>
     <!-- end page title -->
 
+
     <div class="row">
-
-
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title">Category Table</h4>
                     <div class="table-responsive">
                         <table class="table mb-0">
-                            <thead class="table-dark">
-                                <tr>
+                            <thead class="">
+                                <tr class="">
                                     <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                @foreach ($categories as $category)
+                                    <tr>
+                                        <th scope="row">
+                                            {{ $loop->index + 1 }}
+                                        </th>
+                                        <td>
+                                            <img src="{{ asset('uploades/category') }}/{{ $category->image }}"
+                                                style="width:90px; height:90px;">
+                                        </td>
+                                        <td>{{ $category->title }}</td>
+                                        <td>
+                                            <a class="badge bg-danger">{{ $category->status }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('category.edit', $category->id) }}"
+                                                class="btn btn-info btn-sm"><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <a href="{{ route('category.delete', $category->id) }}" class="btn btn-danger btn-sm"><i
+                                                    class="fa-regular fa-trash-can"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div> <!-- end table-responsive-->
@@ -63,9 +66,8 @@
             </div> <!-- end card -->
         </div>
 
-        {{-- image update --}}
-        {{-- <div class="col-xl-6">
-            {{-- success msg --}}
+        {{-- Category Insert Form --}}
+        <div class="col-xl-6">
             <div class="card">
                 <div class="card-body">
                     <h5 class="header-title">Category Insert Form</h5>
@@ -82,7 +84,6 @@
                                 <p class="text-danger text-center pt-1">{{ $message }}</p>
                             @enderror
                         </div>
-
                         <div class="form-floating mb-3">
                             <input type="text"
                                 class="form-control @error('slug')
@@ -95,7 +96,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-floating mb-3">
+                        <div class="form-floating mb-2">
                             <picture class="d-block my-4">
                                 <img id="port_img" src="{{ asset('uploades/default/default1.jpg') }}"
                                     alt="portfolio create image" style="width: 100%; height: 108px; object-fit:contain;">
@@ -119,8 +120,27 @@
                 <!-- end card body -->
             </div>
             <!-- end card -->
-        </div> --}}
+        </div>
 
     </div>
+@endsection
 
+@section('script')
+    @if (session('category_success'))
+        <script>
+            Toastify({
+                text: "{{ session('category_success') }}",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                onClick: function() {} // Callback after click
+            }).showToast();
+        </script>
+    @endif
 @endsection

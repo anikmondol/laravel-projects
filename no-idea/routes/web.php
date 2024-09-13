@@ -28,6 +28,15 @@ Route::post('/home/profile/password/update', [ProfileController::class,'password
 Route::post('/home/profile/image/update', [ProfileController::class,'image_update'])->name('home.profile.image.update');
 
 
-
+// category
 Route::get('/category',[CategoryController::class,'index'])->name('category.index');
+// category insert
 Route::post('/category/store',[CategoryController::class,'store'])->name('category.store');
+// category edit
+Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
+// category update
+Route::post('/category/update/{id}',[CategoryController::class,'update'])->name('category.update');
+// category delete
+Route::get('/category/delete/{id}',[CategoryController::class,'delete'])->name('category.delete');
+
+
