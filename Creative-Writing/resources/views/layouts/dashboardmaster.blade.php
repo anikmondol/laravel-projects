@@ -17,8 +17,6 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
 </head>
 
 <body class="text-gray-600 font-inter" style="margin-bottom: 30px">
@@ -31,6 +29,23 @@
             <span class="text-sm font-bold text-white ml-3">Creative-Writing</span>
         </li>
         <ul class="mt-4">
+
+            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'manager')
+
+            <li class="mb-1 group {{ request()->is('management') ? 'active selected' : '' }}">
+                <a href=''
+                    class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+                    <i class="fa-solid fa-list  mr-3"></i>
+                    <span class="text-sm">Role & Permission</span>
+                </a>
+                <ul class="pl-7 mt-2 hidden group-[.selected]:block">
+                    <li class="mb-4">
+                        <a href=" {{route('management.index')}} "
+                            class="text-gray-300 text-sm flex items-center hover:text-gray-100"> 1. Assing Role & Register </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
             <li class="mb-1 group {{ request()->is('home') ? 'active' : '' }}">
                 <a href='{{ route('dashboard') }}'
                     class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
@@ -45,8 +60,6 @@
                     <span class="text-sm">Profile</span>
                 </a>
             </li>
-
-
             <li class="mb-1 group {{ request()->is('category') ? 'active selected' : '' }}">
                 <a href=''
                     class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:text-gray-100 sidebar-dropdown-toggle">

@@ -17,7 +17,7 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-2" style="gap: 15px">
         <div>
-            <div class="relative overflow-x-auto shadow-2xl"
+            <div class="relative overflow-x-auto shadow-2xl category-category-insert"
                 style="margin-top: 10px; border-radius: 5px; border: 1px solid rgb(169, 148, 148)">
                 <h1 class="flex items-center justify-center font-medium text-[22px] mb-2 mt-2">Category Table</h1>
                 <table class="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
@@ -33,7 +33,7 @@
                                 Title
                             </th>
                             <th scope="col" style="padding: 20px 5px; color: white">
-                                Status
+                                status
                             </th>
                             <th scope="col" style="padding: 20px 5px; color: white">
                                 Action
@@ -54,15 +54,19 @@
                                     {{ $category->title }}
                                 </td>
                                 <td class="px-6 py-4" style="padding: 20px 5px;">
-                                    <span
-                                        style="background: rgb(192, 18, 18); padding: 5px; color: white; border-radius: 4px">{{ $category->status }}</span>
+                                    <a href="{{ route('category.status', $category->id) }}"
+                                        style=" @if ($category->status == 'active')
+                                             background: green;
+                                        @else
+                                         background: rgb(192, 18, 18);
+                                        @endif padding: 5px; color: white; border-radius: 4px">{{ $category->status }}</a>
                                 </td>
                                 <td class="px-6 py-4 text-white" style="padding: 20px 5px">
                                     <a class="rounded-md" href="{{ route('category.edit', $category->id) }}"
                                         style="background-color: #2269F5; padding: 12px; margin-right: 5px">
                                         <i class="fa-regular fa-pen-to-square text-xl"></i>
                                     </a>
-                                    <a class="rounded-md"  href="{{ route('category.delete', $category->id) }}"
+                                    <a class="rounded-md" href="{{ route('category.delete', $category->id) }}"
                                         style="background-color: rgb(192, 10, 10); padding: 12px; margin-right: 5px">
                                         <i class="fa-regular fa-trash-can text-xl"></i>
                                     </a>
@@ -74,6 +78,7 @@
                 </table>
             </div>
         </div>
+
         <div>
             {{-- Category Insert Form --}}
             <div>
@@ -137,6 +142,7 @@
 
         </div>
     </div>
+    
 @endsection
 
 
