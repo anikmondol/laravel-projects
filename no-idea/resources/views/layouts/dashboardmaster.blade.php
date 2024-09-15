@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light" data-menu-color="brand" data-topbar-color="light">
 
 
 <!-- Mirrored from myrathemes.com/dashtrap/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Mar 2024 03:40:24 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
 <head>
     <meta charset="utf-8" />
     <title>Dashboard | Dashtrap - Responsive Bootstrap 5 Admin Dashboard</title>
@@ -21,11 +22,14 @@
     <link href="{{ asset('dashboard') }}/assets/libs/morris.js/morris.css" rel="stylesheet" type="text/css" />
 
     {{-- fornt awesome css links  --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- App css -->
     <link href="{{ asset('dashboard') }}/assets/css/style.min.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('dashboard') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('dashboard') }}/assets/css/app.css" rel="stylesheet" type="text/css">
     <script src="{{ asset('dashboard') }}/assets/js/config.js"></script>
 </head>
 
@@ -40,14 +44,18 @@
             <div class="logo-box">
                 <!-- Brand Logo Light -->
                 <a class='logo-light' href='index.html'>
-                    <img src="{{ asset('dashboard') }}/assets/images/logo-light.png" alt="logo" class="logo-lg" height="28">
-                    <img src="{{ asset('dashboard') }}/assets/images/logo-sm.png" alt="small logo" class="logo-sm" height="28">
+                    <img src="{{ asset('dashboard') }}/assets/images/logo-light.png" alt="logo" class="logo-lg"
+                        height="28">
+                    <img src="{{ asset('dashboard') }}/assets/images/logo-sm.png" alt="small logo" class="logo-sm"
+                        height="28">
                 </a>
 
                 <!-- Brand Logo Dark -->
                 <a class='logo-dark' href='index.html'>
-                    <img src="{{ asset('dashboard') }}/assets/images/logo-dark.png" alt="dark logo" class="logo-lg" height="28">
-                    <img src="{{ asset('dashboard') }}/assets/images/logo-sm.png" alt="small logo" class="logo-sm" height="28">
+                    <img src="{{ asset('dashboard') }}/assets/images/logo-dark.png" alt="dark logo" class="logo-lg"
+                        height="28">
+                    <img src="{{ asset('dashboard') }}/assets/images/logo-sm.png" alt="small logo" class="logo-sm"
+                        height="28">
                 </a>
             </div>
 
@@ -56,7 +64,6 @@
                 <ul class="app-menu">
 
                     <li class="menu-title">Menu</li>
-
                     <li class="menu-item">
                         <a class='menu-link waves-effect waves-light' href='{{ route('dashboard') }}'>
                             <span class="menu-icon"><i class="bx bx-home-smile"></i></span>
@@ -65,7 +72,25 @@
                         </a>
                     </li>
 
-                    <li class="menu-title">Custom</li>
+                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'manager')
+                        <li class="menu-title">Management Role</li>
+                        <li class="menu-item">
+                            <a href="#menuRole" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
+                                <span class="menu-icon"><i class="bx bx-file"></i></span>
+                                <span class="menu-text"> Role & Permission </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="menuRole">
+                                <ul class="sub-menu">
+                                    <li class="menu-item">
+                                        <a class='menu-link' href='{{ route('management.index') }}'>
+                                            <span class="menu-text">Assign Role & Register</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
 
                     <li class="menu-item">
                         <a class='menu-link waves-effect waves-light' href='{{ route('home.profile') }}'>
@@ -164,14 +189,18 @@
                         <div class="logo-box">
                             <!-- Brand Logo Light -->
                             <a class='logo-light' href='index.html'>
-                                <img src="{{ asset('dashboard') }}/assets/images/logo-light.png" alt="logo" class="logo-lg" height="22">
-                                <img src="{{ asset('dashboard') }}/assets/images/logo-sm.png" alt="small logo" class="logo-sm" height="22">
+                                <img src="{{ asset('dashboard') }}/assets/images/logo-light.png" alt="logo"
+                                    class="logo-lg" height="22">
+                                <img src="{{ asset('dashboard') }}/assets/images/logo-sm.png" alt="small logo"
+                                    class="logo-sm" height="22">
                             </a>
 
                             <!-- Brand Logo Dark -->
                             <a class='logo-dark' href='index.html'>
-                                <img src="{{ asset('dashboard') }}/assets/images/logo-dark.png" alt="dark logo" class="logo-lg" height="22">
-                                <img src="{{ asset('dashboard') }}/assets/images/logo-sm.png" alt="small logo" class="logo-sm" height="22">
+                                <img src="{{ asset('dashboard') }}/assets/images/logo-dark.png" alt="dark logo"
+                                    class="logo-lg" height="22">
+                                <img src="{{ asset('dashboard') }}/assets/images/logo-sm.png" alt="small logo"
+                                    class="logo-sm" height="22">
                             </a>
                         </div>
 
@@ -190,48 +219,64 @@
                         </li>
 
                         <li class="dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none"
+                                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                aria-expanded="false">
                                 <i class="mdi mdi-magnify font-size-24"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end dropdown-lg p-0">
                                 <form class="p-3">
-                                    <input type="search" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                    <input type="search" class="form-control" placeholder="Search ..."
+                                        aria-label="Recipient's username">
                                 </form>
                             </div>
                         </li>
 
 
                         <li class="dropdown d-none d-md-inline-block">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="{{ asset('dashboard') }}/assets/images/flags/us.jpg" alt="user-image" class="me-0 me-sm-1" height="18">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none"
+                                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                aria-expanded="false">
+                                <img src="{{ asset('dashboard') }}/assets/images/flags/us.jpg" alt="user-image"
+                                    class="me-0 me-sm-1" height="18">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated">
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item">
-                                    <img src="{{ asset('dashboard') }}/assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
+                                    <img src="{{ asset('dashboard') }}/assets/images/flags/germany.jpg"
+                                        alt="user-image" class="me-1" height="12"> <span
+                                        class="align-middle">German</span>
                                 </a>
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item">
-                                    <img src="{{ asset('dashboard') }}/assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
+                                    <img src="{{ asset('dashboard') }}/assets/images/flags/italy.jpg"
+                                        alt="user-image" class="me-1" height="12"> <span
+                                        class="align-middle">Italian</span>
                                 </a>
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item">
-                                    <img src="{{ asset('dashboard') }}/assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
+                                    <img src="{{ asset('dashboard') }}/assets/images/flags/spain.jpg"
+                                        alt="user-image" class="me-1" height="12"> <span
+                                        class="align-middle">Spanish</span>
                                 </a>
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item">
-                                    <img src="{{ asset('dashboard') }}/assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
+                                    <img src="{{ asset('dashboard') }}/assets/images/flags/russia.jpg"
+                                        alt="user-image" class="me-1" height="12"> <span
+                                        class="align-middle">Russian</span>
                                 </a>
 
                             </div>
                         </li>
 
                         <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none"
+                                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                aria-expanded="false">
                                 <i class="mdi mdi-bell font-size-24"></i>
                                 <span class="badge bg-danger rounded-circle noti-icon-badge">9</span>
                             </a>
@@ -242,7 +287,8 @@
                                             <h6 class="m-0 font-size-16 fw-semibold"> Notification</h6>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="javascript: void(0);" class="text-dark text-decoration-underline">
+                                            <a href="javascript: void(0);"
+                                                class="text-dark text-decoration-underline">
                                                 <small>Clear All</small>
                                             </a>
                                         </div>
@@ -254,9 +300,11 @@
                                     <h5 class="text-muted font-size-13 fw-normal mt-2">Today</h5>
                                     <!-- item-->
 
-                                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-1">
+                                    <a href="javascript:void(0);"
+                                        class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-1">
                                         <div class="card-body">
-                                            <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
+                                            <span class="float-end noti-close-btn text-muted"><i
+                                                    class="mdi mdi-close"></i></span>
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
                                                     <div class="notify-icon bg-primary">
@@ -264,17 +312,22 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1 text-truncate ms-2">
-                                                    <h5 class="noti-item-title fw-semibold font-size-14">Datacorp <small class="fw-normal text-muted ms-1">1 min ago</small></h5>
-                                                    <small class="noti-item-subtitle text-muted">Caleb Flakelar commented on Admin</small>
+                                                    <h5 class="noti-item-title fw-semibold font-size-14">Datacorp
+                                                        <small class="fw-normal text-muted ms-1">1 min ago</small>
+                                                    </h5>
+                                                    <small class="noti-item-subtitle text-muted">Caleb Flakelar
+                                                        commented on Admin</small>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
+                                    <a href="javascript:void(0);"
+                                        class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
                                         <div class="card-body">
-                                            <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
+                                            <span class="float-end noti-close-btn text-muted"><i
+                                                    class="mdi mdi-close"></i></span>
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
                                                     <div class="notify-icon bg-info">
@@ -282,8 +335,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1 text-truncate ms-2">
-                                                    <h5 class="noti-item-title fw-semibold font-size-14">Admin <small class="fw-normal text-muted ms-1">1 hours ago</small></h5>
-                                                    <small class="noti-item-subtitle text-muted">New user registered</small>
+                                                    <h5 class="noti-item-title fw-semibold font-size-14">Admin <small
+                                                            class="fw-normal text-muted ms-1">1 hours ago</small></h5>
+                                                    <small class="noti-item-subtitle text-muted">New user
+                                                        registered</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -292,18 +347,24 @@
                                     <h5 class="text-muted font-size-13 fw-normal mt-0">Yesterday</h5>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
+                                    <a href="javascript:void(0);"
+                                        class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
                                         <div class="card-body">
-                                            <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
+                                            <span class="float-end noti-close-btn text-muted"><i
+                                                    class="mdi mdi-close"></i></span>
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
                                                     <div class="notify-icon">
-                                                        <img src="{{ asset('dashboard') }}/assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" />
+                                                        <img src="{{ asset('dashboard') }}/assets/images/users/avatar-2.jpg"
+                                                            class="img-fluid rounded-circle" alt="" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1 text-truncate ms-2">
-                                                    <h5 class="noti-item-title fw-semibold font-size-14">Cristina Pride <small class="fw-normal text-muted ms-1">1 day ago</small></h5>
-                                                    <small class="noti-item-subtitle text-muted">Hi, How are you? What about our next meeting</small>
+                                                    <h5 class="noti-item-title fw-semibold font-size-14">Cristina Pride
+                                                        <small class="fw-normal text-muted ms-1">1 day ago</small>
+                                                    </h5>
+                                                    <small class="noti-item-subtitle text-muted">Hi, How are you? What
+                                                        about our next meeting</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -312,9 +373,11 @@
                                     <h5 class="text-muted font-size-13 fw-normal mt-0">30 Dec 2021</h5>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
+                                    <a href="javascript:void(0);"
+                                        class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
                                         <div class="card-body">
-                                            <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
+                                            <span class="float-end noti-close-btn text-muted"><i
+                                                    class="mdi mdi-close"></i></span>
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
                                                     <div class="notify-icon bg-primary">
@@ -323,25 +386,31 @@
                                                 </div>
                                                 <div class="flex-grow-1 text-truncate ms-2">
                                                     <h5 class="noti-item-title fw-semibold font-size-14">Datacorp</h5>
-                                                    <small class="noti-item-subtitle text-muted">Caleb Flakelar commented on Admin</small>
+                                                    <small class="noti-item-subtitle text-muted">Caleb Flakelar
+                                                        commented on Admin</small>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
+                                    <a href="javascript:void(0);"
+                                        class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
                                         <div class="card-body">
-                                            <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
+                                            <span class="float-end noti-close-btn text-muted"><i
+                                                    class="mdi mdi-close"></i></span>
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0">
                                                     <div class="notify-icon">
-                                                        <img src="{{ asset('dashboard') }}/assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" />
+                                                        <img src="{{ asset('dashboard') }}/assets/images/users/avatar-4.jpg"
+                                                            class="img-fluid rounded-circle" alt="" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1 text-truncate ms-2">
-                                                    <h5 class="noti-item-title fw-semibold font-size-14">Karen Robinson</h5>
-                                                    <small class="noti-item-subtitle text-muted">Wow ! this admin looks good and awesome design</small>
+                                                    <h5 class="noti-item-title fw-semibold font-size-14">Karen Robinson
+                                                    </h5>
+                                                    <small class="noti-item-subtitle text-muted">Wow ! this admin looks
+                                                        good and awesome design</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -353,7 +422,8 @@
                                 </div>
 
                                 <!-- All-->
-                                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item border-top border-light py-2">
+                                <a href="javascript:void(0);"
+                                    class="dropdown-item text-center text-primary notify-item border-top border-light py-2">
                                     View All
                                 </a>
 
@@ -365,11 +435,15 @@
                         </li>
 
                         <li class="dropdown">
-                            <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light"
+                                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                aria-expanded="false">
                                 @if (auth()->user()->image == 'default.jpg')
-                                <img src="{{ asset('uploades/default') }}/{{ auth()->user()->image }}" alt="user-image" class="rounded-circle">
+                                    <img src="{{ asset('uploades/default') }}/{{ auth()->user()->image }}"
+                                        alt="user-image" class="rounded-circle">
                                 @else
-                                <img src="{{ asset('uploades/profile') }}/{{ auth()->user()->image }}" alt="user-image" class="rounded-circle">
+                                    <img src="{{ asset('uploades/profile') }}/{{ auth()->user()->image }}"
+                                        alt="user-image" class="rounded-circle">
                                 @endif
 
                                 <span class="ms-1 d-none d-md-inline-block">
@@ -437,11 +511,16 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6">
-                            <div><script>document.write(new Date().getFullYear())</script> © Dashtrap</div>
+                            <div>
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> © Dashtrap
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="d-none d-md-flex gap-4 align-item-center justify-content-md-end">
-                                <p class="mb-0">Design & Develop by <a href="https://myrathemes.com/" target="_blank">MyraStudio</a> </p>
+                                <p class="mb-0">Design & Develop by <a href="https://myrathemes.com/"
+                                        target="_blank">MyraStudio</a> </p>
                             </div>
                         </div>
                     </div>
@@ -485,4 +564,5 @@
 
 
 <!-- Mirrored from myrathemes.com/dashtrap/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Mar 2024 03:40:30 GMT -->
+
 </html>
