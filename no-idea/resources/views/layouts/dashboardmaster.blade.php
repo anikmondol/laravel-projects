@@ -87,6 +87,16 @@
                                             <span class="menu-text">Assign Role & Register</span>
                                         </a>
                                     </li>
+                                    <li class="menu-item">
+                                        <a class='menu-link' href='{{ route('management.role.index') }}'>
+                                            <span class="menu-text">Existing User</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a class='menu-link' href='{{ route('management.block.list') }}'>
+                                            <span class="menu-text">Block's User</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

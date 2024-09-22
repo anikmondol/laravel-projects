@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+
 
 class ManagementController extends Controller
 {
@@ -48,4 +51,78 @@ class ManagementController extends Controller
             return back()->with('register_complete' , "Manager Demotion Successful");
         }
     }
+
+
+    // role manage
+    public function role_index(){
+
+        $users = User::where('role','user')->where('block',false)->get();
+        $bloggers = User::where('role','blogger')->get();
+
+        return view('dashboard.management.role.index',[
+            'only_users' => $users,
+            'only_bloggers' => $bloggers,
+        ]);
+    }
+
+    public function role_assign(Request $request){
+
+        $request->validate([
+            'role' => 'required|in:manager,blogger,user',
+        ]);
+
+        $user = User::where('id',$request->user_id)->first();
+
+        User::find($user->id)->update([
+            'role' => $request->role,
+            'updated_at' => now(),
+        ]);
+
+        Session::flash("role_assign", "Role Assign Successful");
+        return back();
+
+    }
+
+    public function blogger_grade_down($id){
+        $user = User::where('id',$id)->first();
+
+        if($user->role == 'blogger'){
+            User::find($user->id)->update([
+                'role' => 'user',
+                'updated_at' => now(),
+            ]);
+            Session::flash('role_assign','Role Down Successful');
+
+            return back();
+        }
+
+    }
+
+    public function user_grade_down($id){
+        $user = User::where('id',$id)->first();
+
+
+        if($user->role == 'user'){
+            User::find($user->id)->update([
+                'block' => true,
+                'updated_at' => now(),
+            ]);
+            Session::flash('role_assign','Block This User Successful');
+
+            return back();
+        }
+    }
+
+
+     // black list
+     public function block_list(){
+
+        $users = User::where('role','user')->where('block',true)->get();
+    return view('dashboard.management.block-list.index',[
+        'only_users' => $users,
+    ]);
+    }
+
+
+
 }

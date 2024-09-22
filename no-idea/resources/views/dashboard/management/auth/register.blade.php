@@ -97,20 +97,22 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    @if (Auth::user()->role == 'admin')
                                     <th>Role</th>
+                                    @if (Auth::user()->role == 'admin')
+                                    <th>Status</th>
                                     <th>Action</th>
                                     @endif
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($managers as $manager)
+                                @forelse ($managers as $manager)
                                     <tr>
                                         <td scope="row">
                                             {{ $loop->index + 1 }}
                                         </td>
                                         <td>{{ $manager->name }}</td>
                                         <td>{{ $manager->email }}</td>
+                                        <td>{{ $manager->role }}</td>
                                         @if (Auth::user()->role == 'admin')
                                         <td>
                                             <form id="user_id{{ $manager->id }}"
@@ -133,7 +135,11 @@
                                         </td>
                                         @endif
                                     </tr>
-                                @endforeach
+                                    @empty
+                                    <tr>
+                                        <td colspan="5" class="text-danger text-center">no blogger found!</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div> <!-- end table-responsive-->
