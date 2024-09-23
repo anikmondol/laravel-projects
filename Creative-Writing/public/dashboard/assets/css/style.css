@@ -1329,15 +1329,32 @@ video {
 
 /* dashboard css */
 
-.hr{
+.font-awesome-red{
+    background-color: rgb(192, 10, 10); padding: 10px; margin-right: 5px
+}
+
+.font-awesome-blue {
+    background-color: #2269F5;
+    padding: 10px;
+    margin-right: 5px
+}
+
+.hr {
     margin: 15px 0px;
     border-color: rgb(85, 81, 81);
+}
+
+.table-date{
+    color: red;
+    text-align: center;
+    padding-top: 10px !important;
+    font-size: 18px;
 }
 
 
 /* profile start*/
 
-.profile-grid-container{
+.profile-grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -1352,7 +1369,7 @@ video {
     margin-top: 10px;
 }
 
-.profile-form form{
+.profile-form form {
     margin-top: 30px;
 }
 
@@ -1379,7 +1396,7 @@ video {
 
 }
 
-.profile-form button{
+.profile-form button {
     background-color: #2269F5;
     color: wheat;
     padding: 8px;
@@ -1389,7 +1406,7 @@ video {
     transition: all 1s;
 }
 
-.profile-form button:hover{
+.profile-form button:hover {
     background-color: rgb(8, 75, 81);
 }
 
@@ -1404,7 +1421,7 @@ video {
     margin-top: 10px;
 }
 
-.profile-form-max form{
+.profile-form-max form {
     margin-top: 30px;
 }
 
@@ -1431,20 +1448,20 @@ video {
 
 }
 
-.text-danger{
+.text-danger {
     color: red;
     margin: 10px 0px;
     margin-top: 0px;
 }
 
-.success-text{
+.success-text {
     color: rgb(46, 219, 46);
     background-color: #dfdfdf;
     padding: 12px;
     border-radius: 5px;
 }
 
-.profile-form-max button{
+.profile-form-max button {
     background-color: #2269F5;
     color: wheat;
     padding: 8px;
@@ -1454,7 +1471,7 @@ video {
     transition: all 1s;
 }
 
-.profile-form-max button:hover{
+.profile-form-max button:hover {
     background-color: rgb(8, 75, 81);
 }
 
@@ -1470,7 +1487,7 @@ video {
     margin-top: 10px;
 }
 
-.category-category-insert form{
+.category-category-insert form {
     margin-top: 30px;
 }
 
@@ -1497,20 +1514,20 @@ video {
 
 }
 
-.text-danger{
+.text-danger {
     color: red;
     margin: 10px 0px;
     margin-top: 0px;
 }
 
-.success-text{
+.success-text {
     color: rgb(46, 219, 46);
     background-color: #dfdfdf;
     padding: 12px;
     border-radius: 5px;
 }
 
-.category-category-insert button{
+.category-category-insert button {
     background-color: #2269F5;
     color: wheat;
     padding: 8px;
@@ -1520,7 +1537,7 @@ video {
     transition: all 1s;
 }
 
-.category-category-insert button:hover{
+.category-category-insert button:hover {
     background-color: rgb(8, 75, 81);
 }
 
@@ -1529,7 +1546,7 @@ video {
 
 /* register start*/
 
-.register-selected{
+.register-selected {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid black;
@@ -1551,7 +1568,7 @@ video {
 /* tablet device  */
 
 @media screen and (max-width: 576px) {
-    .profile-grid-container{
+    .profile-grid-container {
         grid-template-columns: repeat(1, 1fr);
         gap: 20px;
     }
@@ -1563,9 +1580,11 @@ video {
 /* mobile device  */
 
 @media screen and (min-width: 576px) and (max-width: 992px) {
-    .profile-grid-container{
+    .profile-grid-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
 }
+
+

@@ -1,6 +1,6 @@
 @extends('layouts.dashboardmaster')
 
-
+@section('management', 'active selected text-red-900');
 
 @section('content')
     <div class="flex items-center justify-between py-2 mt-4">
@@ -43,7 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($managers as $manager)
+                        @forelse ($managers as $manager)
                             <tr class=" border-b border-blue-400">
                                 <td scope="row" class="px-6 py-4" style="padding: 20px">
                                     {{ $loop->index + 1 }}
@@ -60,28 +60,30 @@
                                         <a href="{{ route('management.down', $manager->id) }}"
                                             style=" @if ($manager->role == 'active') background: green;
                                         @else
-                                         background: green; @endif padding: 5px; color: white; border-radius: 4px">{{ $manager->role }}</a>
+                                         background: green; @endif padding: 5px; color: white; border-radius: 4px">{{ Str::ucfirst($manager->role) }}</a>
                                     </td>
                                     <td class="px-6 py-4 text-white" style="padding: 20px 5px">
-                                        <a class="rounded-md" href=""
-                                            style="background-color: #2269F5; padding: 12px; margin-right: 5px">
+                                        <a class="rounded-md font-awesome-blue" href="">
                                             <i class="fa-regular fa-pen-to-square text-xl"></i>
                                         </a>
-                                        <a class="rounded-md" href=""
-                                            style="background-color: rgb(192, 10, 10); padding: 12px; margin-right: 5px">
+                                        <a class="rounded-md font-awesome-red" href="">
                                             <i class="fa-regular fa-trash-can text-xl"></i>
                                         </a>
                                     </td>
                                 @endif
                             </tr>
                             <hr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="5" class="table-date">No Manager's Found!</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
 
-        {{-- <div>
+        <div>
             {{-- Register Insert Form --}}
         <div>
             <div class="category-category-insert">

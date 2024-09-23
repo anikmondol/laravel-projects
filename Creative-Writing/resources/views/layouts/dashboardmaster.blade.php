@@ -32,7 +32,7 @@
 
             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'manager')
 
-            <li class="mb-1 group {{ request()->is('management') ? 'active selected' : '' }}">
+            <li class="mb-1 group @yield('management') ">
                 <a href=''
                     class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                     <i class="fa-solid fa-list  mr-3"></i>
@@ -43,6 +43,11 @@
                         <a href=" {{route('management.index')}} "
                             class="text-gray-300 text-sm flex items-center hover:text-gray-100"> 1. Assing Role & Register </a>
                     </li>
+                    <li class="mb-4">
+                        <a href=" {{route('management.role.index')}} "
+                            class="text-gray-300 text-sm flex items-center hover:text-gray-100"> 2. Existing USer  </a>
+                    </li>
+
                 </ul>
             </li>
             @endif
@@ -71,6 +76,7 @@
                         <a href=" {{route('category.index')}} "
                             class="text-gray-300 text-sm flex items-center hover:text-gray-100">1 . Show Categories</a>
                     </li>
+
                 </ul>
             </li>
         </ul>
@@ -374,7 +380,7 @@
                                     @csrf
                                     <button type="submit"
                                         class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">
-                                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>  Logout</button>
+                                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -383,7 +389,7 @@
             </ul>
         </div>
         {{-- content --}}
-        <section class=" px-4">
+        <section class="px-4">
             @yield('content')
         </section>
 

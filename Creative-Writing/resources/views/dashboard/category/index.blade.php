@@ -62,12 +62,10 @@
                                         @endif padding: 5px; color: white; border-radius: 4px">{{ $category->status }}</a>
                                 </td>
                                 <td class="px-6 py-4 text-white" style="padding: 20px 5px">
-                                    <a class="rounded-md" href="{{ route('category.edit', $category->id) }}"
-                                        style="background-color: #2269F5; padding: 12px; margin-right: 5px">
+                                    <a class="rounded-md font-awesome-blue" href="{{ route('category.edit', $category->id) }}">
                                         <i class="fa-regular fa-pen-to-square text-xl"></i>
                                     </a>
-                                    <a class="rounded-md" href="{{ route('category.delete', $category->id) }}"
-                                        style="background-color: rgb(192, 10, 10); padding: 12px; margin-right: 5px">
+                                    <a class="rounded-md font-awesome-red" href="{{ route('category.delete', $category->id) }}">
                                         <i class="fa-regular fa-trash-can text-xl"></i>
                                     </a>
                                 </td>
@@ -142,7 +140,7 @@
 
         </div>
     </div>
-    
+
 @endsection
 
 

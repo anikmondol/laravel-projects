@@ -20,11 +20,22 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // management
-Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
-// management role
-Route::post('/management/user/register', [ManagementController::class, 'store_register'])->name('management.store');
-// management user down
-Route::get('/management/user/manager/down/{id}', [ManagementController::class, 'manager_down'])->name('management.down');
+Route::middleware(['roleCheck'])->group(function () {
+    Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
+    // management role
+    Route::post('/management/user/register', [ManagementController::class, 'store_register'])->name('management.store');
+    // management user down
+    Route::get('/management/user/manager/down/{id}', [ManagementController::class, 'manager_down'])->name('management.down');
+
+
+    // role
+    Route::get('/management/role', [ManagementController::class, 'role_index'])->name('management.role.index');
+    Route::post('/management/role/assign', [ManagementController::class, 'role_assign'])->name('management.role.assign');
+    Route::post('/management/role/blogger/manager/down/{id}', [ManagementController::class, 'blogger_down'])->name('blogger.down');
+    Route::get('/management/role/user/manager/down/{id}', [ManagementController::class, 'user_down'])->name('user.down');
+     // user block list
+     Route::get('/management/block/list', [ManagementController::class, 'block_list'])->name('management.block.list');
+});
 
 
 
