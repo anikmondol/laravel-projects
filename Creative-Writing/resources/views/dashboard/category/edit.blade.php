@@ -1,20 +1,12 @@
 @extends('layouts.dashboardmaster')
 
-
+@section('title')
+    Category
+@endsection
 
 @section('content')
-    <div class="flex items-center justify-between py-2 mt-4">
-        <h1 class="text-gray-600 font-bold">Dashboard</h1>
-        <div class="flex items-center text-gray-600">
-            <a href="#" class="">
-                <span class="text-sm">Creative-Writing</span>
-                <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
-            </a>
-            <p class="text-sm">Edit</p>
-        </div>
-    </div>
+    <x-breadcum title="Category Edit Page"></x-breadcum>
     <hr class="hr">
-
     <div>
         {{-- Category Insert Form --}}
         <div class="category-category-insert">
@@ -43,7 +35,7 @@
                         class="text-sm @error('slug')
                 is-invalid
                 @enderror"
-                        placeholder="Slug"  value="{{ $category->slug }}" />
+                        placeholder="Slug" value="{{ $category->slug }}" />
                     @error('slug')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
@@ -53,8 +45,8 @@
                         <label class="font-medium text-sm" for=""> Category Image</label>
                     </div>
                     <picture class="d-block my-4">
-                        <img id="port_img" src="{{ asset('uploads/category') }}/{{ $category->image }}" alt="portfolio create image"
-                            style="width: 100%; height: 150px; object-fit:contain;">
+                        <img id="port_img" src="{{ asset('uploads/category') }}/{{ $category->image }}"
+                            alt="portfolio create image" style="width: 100%; height: 150px; object-fit:contain;">
                     </picture>
                     <input type="file"
                         onchange="document.getElementById('port_img').src= window.URL.createObjectURL(this.files[0])"

@@ -1,17 +1,15 @@
 @extends('layouts.dashboardmaster')
 
+@section('title')
+
+Profile
+
+@endsection
+
 
 
 @section('content')
-    <div class="flex items-center justify-between py-2 mt-4">
-        <h1 class="text-gray-600 font-bold">Profile</h1>
-        <div class="flex items-center text-gray-600">
-            <span href="#" class="">
-                <span class="text-sm">Creative-Writing</span>
-                <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90">Profile</i>
-            </span>
-        </div>
-    </div>
+<x-breadcum title="Profile Page"></x-breadcum>
 
     <hr class="hr">
 

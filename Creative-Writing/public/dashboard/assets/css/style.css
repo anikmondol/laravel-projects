@@ -1500,16 +1500,16 @@ video {
 
 }
 
-.category-category-insert input {
+.category-category-insert input, .category-category-insert textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid rgb(68, 63, 63);
-    margin: 20px 0px;
+    margin: 16px 0px;
     border-radius: 5px;
     outline: none;
 }
 
-.category-category-insert input:hover {
+.category-category-insert input:hover, .category-category-insert textarea:hover {
     border: 1px solid rgb(86, 15, 216);
 
 }

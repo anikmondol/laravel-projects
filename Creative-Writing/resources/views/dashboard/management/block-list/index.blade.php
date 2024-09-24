@@ -12,12 +12,12 @@
     <div>
         <x-breadcum title="Exists User's Page"></x-breadcum>
         <hr class="hr">
-        <div class="grid grid-cols-1 lg:grid-cols-2" style="gap: 15px">
+        <div class="grid grid-cols-1" style="gap: 15px">
 
             <div>
                 <div class="relative overflow-x-auto shadow-2xl category-category-insert"
                     style="margin-top: 10px; border-radius: 5px; border: 1px solid rgb(169, 148, 148)">
-                    <h1 class="flex items-center justify-center font-medium text-[22px] mb-2 mt-2"> Blogger's Table</h1>
+                    <h1 class="flex items-center justify-center font-medium text-[22px] mb-2 mt-2"> item's Table</h1>
                     <table class="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
                         <thead class="text-xs" style="padding: 15px; background: rgb(35, 33, 36)">
                             <tr>
@@ -32,47 +32,38 @@
                                 </th>
                                 @if (Auth::user()->role == 'admin')
                                     <th scope="col" style="padding: 20px 5px; color: white">
-                                        Role
+                                        Is Block
                                     </th>
                                     <th scope="col" style="padding: 20px 5px; color: white">
-                                        Action
+                                        Blocking Time
                                     </th>
                                 @endif
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($bloggers as $blogger)
+                            @forelse ($only_users as $item)
                                 <tr class=" border-b border-blue-400">
                                     <td scope="row" class="px-6 py-4" style="padding: 20px">
                                         {{ $loop->index + 1 }}
                                     </td>
                                     <td class="px-6 py-4" style="padding: 20px 5px">
-                                        {{ $blogger->email }}
+                                        {{ $item->email }}
                                     </td>
-
                                     <td class="px-6 py-4" style="padding: 20px 5px">
-                                        {{ $blogger->name }}
+                                        {{ $item->name }}
                                     </td>
-                                    @if (Auth::user()->role == 'admin')
-                                        <td class="px-6 py-4" style="padding: 20px 5px;">
-                                            <a href="{{ route('blogger.down', $blogger->id) }}"
-                                                style=" @if ($blogger->role == 'active') background: green;
-                                        @else
-                                         background: green; @endif padding: 5px; color: white; border-radius: 4px">{{ Str::ucfirst($blogger->role) }}</a>
-                                        </td>
-                                        <td class="px-6 py-4 text-white" style="padding: 20px 5px">
-                                            <a class="rounded-md font-awesome-blue" href="">
-                                                <i class="fa-regular fa-pen-to-square text-xl"></i>
-                                            </a>
-                                            <a class="rounded-md font-awesome-red" href="">
-                                                <i class="fa-regular fa-trash-can text-xl"></i>
-                                            </a>
-                                        </td>
+                                    @if ($item->block == 1)
+                                    <td class="px-6 py-4" style="padding: 20px 5px">
+                                        True
+                                    </td>
                                     @endif
+                                    <td class="px-6 py-4" style="padding: 20px 5px">
+                                        {{ $item->updated_at }}
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="table-date">No Blogger's Found!</td>
+                                    <td colspan="5" class="table-date">No item's Found!</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -80,7 +71,7 @@
                 </div>
             </div>
 
-            <div>
+            {{-- <div>
                 <div class="relative overflow-x-auto shadow-2xl category-category-insert"
                     style="margin-top: 10px; border-radius: 5px; border: 1px solid rgb(169, 148, 148)">
                     <h1 class="flex items-center justify-center font-medium text-[22px] mb-2 mt-2"> User's Table</h1>
@@ -145,7 +136,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 

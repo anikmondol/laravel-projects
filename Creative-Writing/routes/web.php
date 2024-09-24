@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ManagementController;
@@ -31,7 +32,7 @@ Route::middleware(['roleCheck'])->group(function () {
     // role
     Route::get('/management/role', [ManagementController::class, 'role_index'])->name('management.role.index');
     Route::post('/management/role/assign', [ManagementController::class, 'role_assign'])->name('management.role.assign');
-    Route::post('/management/role/blogger/manager/down/{id}', [ManagementController::class, 'blogger_down'])->name('blogger.down');
+    Route::get('/management/role/blogger/manager/down/{id}', [ManagementController::class, 'blogger_down'])->name('blogger.down');
     Route::get('/management/role/user/manager/down/{id}', [ManagementController::class, 'user_down'])->name('user.down');
      // user block list
      Route::get('/management/block/list', [ManagementController::class, 'block_list'])->name('management.block.list');
@@ -64,3 +65,8 @@ Route::post('/category/update{id}', [CategoryController::class, 'update'])->name
 Route::get('/category/delete{id}', [CategoryController::class, 'delete'])->name('category.delete');
 // Category status
 Route::get('/category/status{id}', [CategoryController::class, 'status'])->name('category.status');
+
+
+// blog
+Route::resource('/blog', BlogController::class);
+

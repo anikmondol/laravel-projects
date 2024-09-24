@@ -118,14 +118,15 @@ class ManagementController extends Controller
         }
     }
 
+    // black list
+    public function block_list(){
 
-    // public function block_list()
-    // {
-    //     $items = User::where('role', 'user')->where('block', true)->get();
+        $users = User::where('role','user')->where('block',true)->get();
+    return view('dashboard.management.block-list.index',[
+        'only_users' => $users,
+    ]);
+    }
 
-    //     return view('dashboard.management.role.index', compact('items'));
-
-    // }
 
 
 

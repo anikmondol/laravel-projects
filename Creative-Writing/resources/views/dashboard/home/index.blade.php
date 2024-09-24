@@ -1,19 +1,33 @@
 @extends('layouts.dashboardmaster')
 
+@section('title')
+    Dashboard
+@endsection
 
 
 @section('content')
-    <div class="flex items-center justify-between py-2 mt-4">
-        <h1 class="text-gray-600 font-bold">Dashboard</h1>
-        <div class="flex items-center text-gray-600">
-            <a href="#" class="">
-                <span class="text-sm">Creative-Writing</span>
-                <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
-            </a>
-            <p class="text-sm">Dashboard</p>
-        </div>
-    </div>
+    <x-breadcum title="Dashboard"></x-breadcum>
     <hr class="hr">
 
     <h1>Dashboard</h1>
+@endsection
+
+@section('script')
+    @if (session('role_assign'))
+        <script>
+            Toastify({
+                text: "{{ session('role_assign') }}",
+                duration: 5000,
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                onClick: function() {} // Callback after click
+            }).showToast();
+        </script>
+    @endif
 @endsection

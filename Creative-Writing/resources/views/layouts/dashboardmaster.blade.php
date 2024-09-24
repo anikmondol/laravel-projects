@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link href="{{ asset('dashboard') }}/assets/css/style.css" rel="stylesheet" type="text/css">
-    <title>Creative-Writing || Dashboard</title>
+    <title> @yield('title') || Dashboard</title>
     <link rel="shortcut icon" href="{{ asset('dashboard') }}/assets/images/neptune.png">
 
     {{-- toastify css links --}}
@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- tinymce --}}
+    <script src="https://cdn.tiny.cloud/1/7yqf9i69xje1yopzk2jmj4otc9isdd92s25pq573dqnmod6x/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
+
 
 </head>
 
@@ -29,28 +33,6 @@
             <span class="text-sm font-bold text-white ml-3">Creative-Writing</span>
         </li>
         <ul class="mt-4">
-
-            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'manager')
-
-            <li class="mb-1 group @yield('management') ">
-                <a href=''
-                    class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                    <i class="fa-solid fa-list  mr-3"></i>
-                    <span class="text-sm">Role & Permission</span>
-                </a>
-                <ul class="pl-7 mt-2 hidden group-[.selected]:block">
-                    <li class="mb-4">
-                        <a href=" {{route('management.index')}} "
-                            class="text-gray-300 text-sm flex items-center hover:text-gray-100"> 1. Assing Role & Register </a>
-                    </li>
-                    <li class="mb-4">
-                        <a href=" {{route('management.role.index')}} "
-                            class="text-gray-300 text-sm flex items-center hover:text-gray-100"> 2. Existing USer  </a>
-                    </li>
-
-                </ul>
-            </li>
-            @endif
             <li class="mb-1 group {{ request()->is('home') ? 'active' : '' }}">
                 <a href='{{ route('dashboard') }}'
                     class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
@@ -58,6 +40,33 @@
                     <span class="text-sm">Dashboard</span>
                 </a>
             </li>
+            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'manager')
+                <li class="mb-1 group @yield('management') ">
+                    <a href=''
+                        class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+                        <i class="fa-solid fa-scale-balanced mr-3"></i>
+                        <span class="text-sm">Role & Permission</span>
+                    </a>
+                    <ul class="pl-7 mt-2 hidden group-[.selected]:block">
+                        <li class="mb-4">
+                            <a href=" {{ route('management.index') }} "
+                                class="text-gray-300 text-sm flex items-center hover:text-gray-100"> 1. Assign Role &
+                                Register </a>
+                        </li>
+                        <li class="mb-4">
+                            <a href=" {{ route('management.role.index') }} "
+                                class="text-gray-300 text-sm flex items-center hover:text-gray-100"> 2. Existing User
+                            </a>
+                        </li>
+                        <li class="mb-4">
+                            <a href=" {{ route('management.block.list') }} "
+                                class="text-gray-300 text-sm flex items-center hover:text-gray-100"> 2. Block's User
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            @endif
             <li class="mb-1 group {{ request()->is('home/profile') ? 'active' : '' }}">
                 <a href='{{ route('home.profile') }}'
                     class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
@@ -73,8 +82,27 @@
                 </a>
                 <ul class="pl-7 mt-2 hidden group-[.selected]:block">
                     <li class="mb-4">
-                        <a href=" {{route('category.index')}} "
+                        <a href=" {{ route('category.index') }} "
                             class="text-gray-300 text-sm flex items-center hover:text-gray-100">1 . Show Categories</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="mb-1 group @yield('blog') ">
+                <a href=''
+                    class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+                    <i class="fa-solid fa-blog mr-3"></i>
+                    <span class="text-sm">Blog's Page</span>
+                </a>
+                <ul class="pl-7 mt-2 hidden group-[.selected]:block">
+                    <li class="mb-4">
+                        <a href=" {{ route('blog.index') }} "
+                            class="text-gray-300 text-sm flex items-center hover:text-gray-100"> 1. Show Blog's </a>
+                    </li>
+                    <li class="mb-4">
+                        <a href=" {{ route('blog.create') }} "
+                            class="text-gray-300 text-sm flex items-center hover:text-gray-100"> 2. Create Blog's
+                        </a>
                     </li>
 
                 </ul>
@@ -357,34 +385,37 @@
                     </div>
                 </li>
                 <li class="flex items-center">
-                    <li class="ml-1 text-sm"> {{ Auth::user()->name }} </li>
-                    <li class="dropdown ml-3">
-                        <button type="button" class="dropdown-toggle flex items-center">
-                            @if (auth()->user()->image == 'default.jpg')
-                                <img src="{{ asset('uploads/default') }}/{{ auth()->user()->image }}" alt="user-image"  class="w-8 h-8 rounded-full block object-cover align-middle">
-                                @else
-                                <img src="{{ asset('uploads/profile') }}/{{ auth()->user()->image }}" alt="user-image"  class="w-8 h-8 rounded-full block object-cover align-middle">
-                                @endif
-                        </button>
-                        <ul class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
-                            <li>
-                                <a href="#"
-                                    class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Profile</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Settings</a>
-                            </li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit"
-                                        class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">
-                                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
+                <li class="ml-1 text-sm"> {{ Auth::user()->name }} </li>
+                <li class="dropdown ml-3">
+                    <button type="button" class="dropdown-toggle flex items-center">
+                        @if (auth()->user()->image == 'default.jpg')
+                            <img src="{{ asset('uploads/default') }}/{{ auth()->user()->image }}" alt="user-image"
+                                class="w-8 h-8 rounded-full block object-cover align-middle">
+                        @else
+                            <img src="{{ asset('uploads/profile') }}/{{ auth()->user()->image }}" alt="user-image"
+                                class="w-8 h-8 rounded-full block object-cover align-middle">
+                        @endif
+                    </button>
+                    <ul
+                        class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
+                        <li>
+                            <a href="#"
+                                class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Settings</a>
+                        </li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">
+                                    <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i>Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
                 </li>
             </ul>
         </div>
