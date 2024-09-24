@@ -3,30 +3,21 @@
 
 @section('content')
 
- <!-- start page title -->
- <div class="py-3 py-lg-4">
-    <div class="row">
-        <div class="col-lg-6">
-            <h4 class="page-title mb-0">Dashboard</h4>
-        </div>
-        <div class="col-lg-6">
-           <div class="d-none d-lg-block">
-            <ol class="breadcrumb m-0 float-end">
-                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashtrap</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-           </div>
-        </div>
-    </div>
-</div>
-<!-- end page title -->
+<x-breadcum title="Block User's"></x-breadcum>
+
+@section('index-title')
+
+Management's
+
+@endsection
+
 
 <div class="row">
     {{-- show data --}}
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">User'S Table</h4>
+                <h4 class="header-title">Block'S Table</h4>
                 <div class="table-responsive">
                     <table class="table mb-0">
                         <thead class="">
@@ -57,7 +48,7 @@
                                     </td>
                                     <td>{{ $user->role }}</td>
                                     @if (Auth::user()->role == 'admin')
-                                        
+
                                         </td>
                                         <td>
                                             <a href="" class="btn btn-info btn-sm"><i

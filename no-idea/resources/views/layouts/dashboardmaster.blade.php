@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard | Dashtrap - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title> @yield("index-title") | Dashtrap - Responsive Bootstrap 5 Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Myra Studio" name="author" />
@@ -31,6 +31,8 @@
     <link href="{{ asset('dashboard') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('dashboard') }}/assets/css/app.css" rel="stylesheet" type="text/css">
     <script src="{{ asset('dashboard') }}/assets/js/config.js"></script>
+    {{-- tinymce --}}
+    <script src="https://cdn.tiny.cloud/1/7yqf9i69xje1yopzk2jmj4otc9isdd92s25pq573dqnmod6x/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
 <body>
@@ -127,53 +129,24 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="#menuExpages" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
+                        <a href="#menuBlog" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-file"></i></span>
-                            <span class="menu-text"> Extra Pages </span>
+                            <span class="menu-text"> Blog's Pages </span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="menuExpages">
+                        <div class="collapse" id="menuBlog">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a class='menu-link' href='pages-starter.html'>
-                                        <span class="menu-text">Starter</span>
+                                    <a class='menu-link' href='{{ route('blog.index') }}'>
+                                        <span class="menu-text">Show Blog's</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class='menu-link' href='pages-invoice.html'>
-                                        <span class="menu-text">Invoice</span>
+                                    <a class='menu-link' href='{{ route('blog.create') }}'>
+                                        <span class="menu-text">Create Blog's</span>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a class='menu-link' href='pages-login.html'>
-                                        <span class="menu-text">Log In</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class='menu-link' href='pages-register.html'>
-                                        <span class="menu-text">Register</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class='menu-link' href='pages-recoverpw.html'>
-                                        <span class="menu-text">Recover Password</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class='menu-link' href='pages-lock-screen.html'>
-                                        <span class="menu-text">Lock Screen</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class='menu-link' href='pages-404.html'>
-                                        <span class="menu-text">Error 404</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class='menu-link' href='pages-500.html'>
-                                        <span class="menu-text">Error 500</span>
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>
                     </li>

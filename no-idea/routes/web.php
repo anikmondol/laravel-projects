@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ManagementController;
@@ -72,3 +73,7 @@ Route::post('/category/update/{id}', [CategoryController::class, 'update'])->nam
 Route::get('/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 // category status
 Route::post('/category/status/{id}', [CategoryController::class, 'status'])->name('category.status');
+
+
+// blog
+Route::resource('/blog', BlogController::class);
