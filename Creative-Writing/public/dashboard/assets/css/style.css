@@ -1557,6 +1557,45 @@ video {
 
 }
 
+.pagination {
+    display: flex;
+    
+    list-style-type: none; /* Remove bullet points */
+    padding: 10px 0;
+}
+
+.pagination li {
+    margin: 0 5px; /* Space between pagination items */
+}
+
+.pagination a {
+    padding: 10px 15px; /* Padding for the links to make them button-like */
+    background-color: #f0f0f0; /* Light background color */
+    color: #007bff; /* Blue text */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.pagination a:hover {
+    background-color: #007bff; /* Change background on hover */
+    color: white; /* Change text color on hover */
+}
+
+.pagination a.active {
+    background-color: #007bff; /* Highlight active page */
+    color: white; /* White text for active page */
+    border-color: #007bff; /* Border matches background */
+}
+
+.pagination a.disabled {
+    color: #ccc; /* Disabled state color */
+    pointer-events: none; /* Disabled links are not clickable */
+}
+
+
+
 
 
 /* register end*/

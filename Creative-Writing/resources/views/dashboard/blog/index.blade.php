@@ -13,11 +13,16 @@
         <x-breadcum title="Blog Show's Page"></x-breadcum>
         <hr class="hr">
 
-        <div class="grid grid-cols-1 lg:grid-cols-2" style="gap: 15px">
+        <div>
             <div>
                 <div class="relative overflow-x-auto shadow-2xl category-category-insert"
                     style="margin-top: 10px; border-radius: 5px; border: 1px solid rgb(169, 148, 148)">
                     <h1 class="flex items-center justify-center font-medium text-[22px] mb-2 mt-2">Blog's Table</h1>
+                    {{-- <div style="display: flex">
+                    @foreach ($blogs as $blog)
+                    {{ $blogs->links() }}
+                    @endforeach
+                  </div> --}}
                     <table class="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
                         <thead class="text-xs" style="padding: 15px; background: rgb(35, 33, 36)">
                             <tr>
@@ -28,10 +33,13 @@
                                     Image
                                 </th>
                                 <th scope="col" style="padding: 20px 5px; color: white">
+                                    Category Title
+                                </th>
+                                <th scope="col" style="padding: 20px 5px; color: white">
                                     Title
                                 </th>
                                 <th scope="col" style="padding: 20px 5px; color: white">
-                                    status
+                                    Status
                                 </th>
                                 <th scope="col" style="padding: 20px 5px; color: white">
                                     Action
@@ -39,39 +47,48 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($blogs as $blog)
+                            @forelse ($blogs as $blog)
                                 <tr class=" border-b border-blue-400">
                                     <th scope="row" class="px-6 py-4" style="padding: 20px">
                                         {{ $loop->index + 1 }}
                                     </th>
                                     <td class="px-6 py-4" style="padding: 20px 5px">
                                         <img src="{{ asset('uploads/blog') }}/{{ $blog->thumbnail }}" alt="blog image"
-                                            style="height: 70px">
+                                            style="height: 70px; width: 80px; object-fit: cover">
+                                    </td>
+                                    <td class="px-6 py-4" style="padding: 20px 5px">
+                                        {{ $blog->oneCategory->title }}
                                     </td>
                                     <td class="px-6 py-4" style="padding: 20px 5px">
                                         {{ $blog->title }}
                                     </td>
-                                    {{-- <td class="px-6 py-4" style="padding: 20px 5px;">
-                                        <a href="{{ route('blogs.status', $blogs->id) }}"
-                                            style=" @if ($blogs->status == 'active')
-                                                 background: green;
+                                    <td class="px-6 py-4" style="padding: 20px 5px;">
+                                        <a href=""
+                                            style=" @if ($blog->status == 'active') background: green;
                                             @else
-                                             background: rgb(192, 18, 18);
-                                            @endif padding: 5px; color: white; border-radius: 4px">{{ $blogs->status }}</a>
-                                    </td> --}}
-                                    {{-- <td class="px-6 py-4 text-white" style="padding: 20px 5px">
-                                        <a class="rounded-md font-awesome-blue" href="{{ route('blogs.edit', $blogs->id) }}">
+                                             background: rgb(192, 18, 18); @endif padding: 5px; color: white; border-radius: 4px">{{ $blog->status }}</a>
+                                    </td>
+                                    <td class="px-6 py-4 text-white" style="padding: 20px 5px">
+                                        <a class="rounded-md font-awesome-blue" href="{{ route('blog.show', $blog->id) }}">
+                                            <i class="fa-regular fa-comment-dots"></i>
+                                        </a>
+                                        <a class="rounded-md font-awesome-blue"href="{{ route('blog.edit', $blog->id) }}">
                                             <i class="fa-regular fa-pen-to-square text-xl"></i>
                                         </a>
-                                        <a class="rounded-md font-awesome-red" href="{{ route('blogs.delete', $category->id) }}">
+                                        <a class="rounded-md font-awesome-red" href="">
                                             <i class="fa-regular fa-trash-can text-xl"></i>
                                         </a>
-                                    </td> --}}
+                                    </td>
                                 </tr>
                                 <hr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="table-date">No Date Found!</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
+                    <span class="pagination ">{{ $blogs->links() }}</span>
                 </div>
             </div>
 

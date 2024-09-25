@@ -3,6 +3,13 @@
 
 
 @section('content')
+
+@section('title')
+
+Category's
+
+@endsection
+
 <x-breadcum title="Category Show's Page"></x-breadcum>
     <hr class="hr">
 
@@ -32,14 +39,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category)
+                        @forelse ($categories as $category)
                             <tr class=" border-b border-blue-400">
                                 <th scope="row" class="px-6 py-4" style="padding: 20px">
                                     {{ $loop->index + 1 }}
                                 </th>
                                 <td class="px-6 py-4" style="padding: 20px 5px">
                                     <img src="{{ asset('uploads/category') }}/{{ $category->image }}" alt="category image"
-                                        style="height: 70px">
+                                        style="height: 70px;">
                                 </td>
                                 <td class="px-6 py-4" style="padding: 20px 5px">
                                     {{ $category->title }}
@@ -62,7 +69,11 @@
                                 </td>
                             </tr>
                             <hr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="5" class="table-date">No Date Found!</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
