@@ -17,7 +17,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::latest()->paginate(3);
         return view("dashboard.blog.index", compact('blogs'));
     }
 
@@ -90,7 +90,8 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        $categories = Category::where('status', "active")->latest()->get();
+       return view('dashboard.blog.edit', compact('blog', 'categories'));
     }
 
 
@@ -100,7 +101,73 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $manager = new ImageManager(new Driver());
+        $request->validate([
+            'category_id' => 'required',
+            // 'thumbnail' => 'required',
+            'title' => 'required',
+            'short_description' => 'required | max:300',
+            'description' => 'required',
+        ]);
+
+        if ($request->hasFile('thumbnail')) {
+            $new_name = Auth::user()->id . "-" . Str::random(4) . "." . $request->file('thumbnail')->getClientOriginalExtension();
+            $image = $manager->read($request->file('thumbnail'));
+            $image->toPng()->save(base_path('public/uploades/blog/'.$new_name));
+
+
+            if ($request->slug) {
+                Blog::find($blog->id)->update([
+                    'user_id' => Auth::user()->id,
+                    'category_id' => $request->category_id,
+                    'thumbnail' =>  $new_name,
+                    'title' => $request->title,
+                    'slug' => Str::slug($request->slug, "-"),
+                    'short_description' => $request->short_description,
+                    'description' => $request->description,
+                ]);
+                return redirect()->route('blog.index')->with('blog_create_success', "Blog Update Complete");
+            } else {
+                Blog::find($blog->id)->update([
+                    'user_id' => Auth::user()->id,
+                    'category_id' => $request->category_id,
+                    'thumbnail' =>  $new_name,
+                    'title' => $request->title,
+                    'slug' => Str::slug($request->title, "-"),
+                    'short_description' => $request->short_description,
+                    'description' => $request->description,
+
+                ]);
+                return redirect()->route('blog.index')->with('blog_create_success', "Blog Update Complete");
+            }
+        }else{
+
+            if ($request->slug) {
+                Blog::find($blog->id)->update([
+                    'user_id' => Auth::user()->id,
+                    'category_id' => $request->category_id,
+
+                    'title' => $request->title,
+                    'slug' => Str::slug($request->slug, "-"),
+                    'short_description' => $request->short_description,
+                    'description' => $request->description,
+                ]);
+                return redirect()->route('blog.index')->with('blog_create_success', "Blog Update Complete");
+            } else {
+                Blog::find($blog->id)->update([
+                    'user_id' => Auth::user()->id,
+                    'category_id' => $request->category_id,
+
+                    'title' => $request->title,
+                    'slug' => Str::slug($request->title, "-"),
+                    'short_description' => $request->short_description,
+                    'description' => $request->description,
+
+                ]);
+                return redirect()->route('blog.index')->with('blog_create_success', "Blog Update Complete");
+            }
+
+        }
     }
 
     /**

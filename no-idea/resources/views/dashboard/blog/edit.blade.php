@@ -5,10 +5,12 @@
 
 
 @section('index-title')
-    Blog's
+
+Dashbord
+
 @endsection
 
-<x-breadcum title="Blog's Create Page"></x-breadcum>
+<x-breadcum title="Blog"></x-breadcum>
 
 <div class="row">
 
@@ -17,16 +19,17 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="header-title text-center">Blog Insert Form</h5>
-                <form role="form" action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
+                <h5 class="header-title text-center">Blog Update Form</h5>
+                <form role="form" action="{{ route('blog.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
                     <div>
                         <label style="margin-bottom: 10px" for="floatingnameInput">Category</label>
                         <div class="form-floating mb-3">
                             <select class="form-select" style="padding: 10px " name="category_id" class="form-control" id="floatingnameInput">
                                 <option value="">select roles</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                <option {{ $category->id == $blog->category_id ? 'selected' : ""}} value="{{ $category->id }}">{{ $category->title }}</option>
                                 @endforeach
                             </select>
                             @error('category_id')
@@ -37,7 +40,7 @@
                     <div class="mb-3 ">
                         <label for="inputEmail4" class="form-label">Blog Title</label>
                         <input name="title" style="padding: 16px" type="text" class="form-control @error('title') is-invalid
-                        @enderror" id="inputEmail4" placeholder="Blog Title">
+                        @enderror" id="inputEmail4" placeholder="Blog Title" value="{{ $blog->title }}">
                         @error('title')
                         <p class="text-danger text-center pt-1">{{ $message }}</p>
                     @enderror
@@ -46,7 +49,7 @@
                     <div class="mb-3 ">
                         <label for="inputEmail4" class="form-label">Blog Slug</label>
                         <input name="slug" style="padding: 16px" type="text" class="form-control @error('slug') is-invalid
-                        @enderror" id="inputEmail4" placeholder="Blog Slug">
+                        @enderror" id="inputEmail4" placeholder="Blog Slug" value="{{ $blog->slug }}">
                         @error('slug')
                             <p class="text-danger text-center pt-1">{{ $message }}</p>
                         @enderror
@@ -57,7 +60,7 @@
                             <div>
                              <textarea id="short_description" type="text" class="form-control @error('short_description') is-invalid
                              @enderror"
-                                 id="floatingnameInput" name="short_description"></textarea>
+                                 id="floatingnameInput" name="short_description">{!! $blog->short_description !!}</textarea>
                                  @error('short_description')
                                  <p class="text-danger text-center pt-1">{{ $message }}</p>
                              @enderror
@@ -70,7 +73,7 @@
                         <div>
                             <textarea id="description" type="text" class="form-control @error('description') is-invalid
                         @enderror"
-                            id="floatingnameInput" name="description"></textarea>
+                            id="floatingnameInput" name="description">{!! $blog->description !!}</textarea>
                         @error('description')
                             <p class="text-danger text-center pt-1">{{ $message }}</p>
                         @enderror
@@ -81,7 +84,7 @@
                     <div class="form-floating mb-2">
                         <label style="padding: 0px" for="floatingnameInput">Blog Thumbnail</label>
                         <picture class="d-block my-4">
-                            <img id="port_img" src="{{ asset('uploades/default/default1.jpg') }}"
+                            <img id="port_img" src="{{ asset('uploades/blog') }}/{{ $blog->thumbnail }}"
                                 alt="portfolio create thumbnail"
                                 style="width: 100%; height: 108px; object-fit:contain;">
                         </picture>
@@ -109,10 +112,8 @@
 </div>
 
 
+
 @endsection
-
-
-
 
 
 @section('script')

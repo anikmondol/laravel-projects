@@ -78,7 +78,7 @@
                         <li class="menu-title">Management Role</li>
                         <li class="menu-item">
                             <a href="#menuRole" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
-                                <span class="menu-icon"><i class="bx bx-file"></i></span>
+                                <span class="menu-icon"><i class="fa-solid fa-scale-balanced"></i></i></span>
                                 <span class="menu-text"> Role & Permission </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -130,7 +130,7 @@
 
                     <li class="menu-item">
                         <a href="#menuBlog" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
-                            <span class="menu-icon"><i class="bx bx-file"></i></span>
+                            <span class="menu-icon"><i class="fa-solid fa-blog"></i></span>
                             <span class="menu-text"> Blog's Pages </span>
                             <span class="menu-arrow"></span>
                         </a>
