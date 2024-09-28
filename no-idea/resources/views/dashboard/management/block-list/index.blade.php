@@ -3,12 +3,10 @@
 
 @section('content')
 
-<x-breadcum title="Block User's"></x-breadcum>
+    <x-breadcum title="Block User's"></x-breadcum>
 
 @section('index-title')
-
-Management's
-
+    Management's
 @endsection
 
 
@@ -42,23 +40,21 @@ Management's
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        @if ( $user->block  == 1)
+                                        @if ($user->block == 1)
                                             <span>True</span>
                                         @endif
                                     </td>
                                     <td>{{ $user->role }}</td>
                                     @if (Auth::user()->role == 'admin')
-
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-info btn-sm"><i
-                                                    class="fa-regular fa-pen-to-square"></i></a>
-                                            <a href="" class="btn btn-danger btn-sm"><i
+                                            <a href="{{ route('block.delete', $user->id) }}"
+                                                class="btn btn-danger btn-sm"><i
                                                     class="fa-regular fa-trash-can"></i></a>
                                         </td>
                                     @endif
                                 </tr>
-                                @empty
+                            @empty
                                 <tr>
                                     <td colspan="5" class="text-danger text-center">no blogger found!</td>
                                 </tr>
@@ -73,4 +69,25 @@ Management's
 </div>
 
 
+@endsection
+
+
+@section('script')
+@if (session('block_delete'))
+    <script>
+        Toastify({
+            text: "{{ session('block_delete') }}",
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function() {} // Callback after click
+        }).showToast();
+    </script>
+@endif
 @endsection

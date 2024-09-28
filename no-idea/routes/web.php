@@ -32,6 +32,33 @@ Route::prefix(env('HOST_NAME'))->middleware(['rolecheck'])->group(function () {
     // management user down
     Route::post('/management/user/manager/down/{id}', [ManagementController::class, 'manager_down'])->name('management.down');
 
+
+    // manager edit
+    Route::get('/management/user/manager/edit/{id}', [ManagementController::class, 'manager_edit'])->name('manager.edit');
+    // manager update
+    Route::post('/management/user/manager/update/{id}', [ManagementController::class, 'manager_update'])->name('manager.update');
+    // manager delete
+    Route::get('/management/user/manager/delete/{id}', [ManagementController::class, 'manager_delete'])->name('manager.delete');
+
+    // blogger edit
+    Route::get('/management/blogger/edit/{id}', [ManagementController::class, 'blogger_edit'])->name('blogger.edit');
+    // blogger update
+    Route::post('/management/blogger/update/{id}', [ManagementController::class, 'blogger_update'])->name('blogger.update');
+    // blogger delete
+    Route::get('/management/blogger/delete/{id}', [ManagementController::class, 'blogger_delete'])->name('blogger.delete');
+
+
+
+    // user edit
+    Route::get('/management/user/edit/{id}', [ManagementController::class, 'user_edit'])->name('user.edit');
+    // user update
+    Route::post('/management/user/update/{id}', [ManagementController::class, 'user_update'])->name('user.update');
+    // user delete
+    Route::get('/management/user/delete/{id}', [ManagementController::class, 'user_delete'])->name('user.delete');
+
+
+
+
     // role
     Route::get('/management/role', [ManagementController::class, 'role_index'])->name('management.role.index');
     // role assign
@@ -40,8 +67,12 @@ Route::prefix(env('HOST_NAME'))->middleware(['rolecheck'])->group(function () {
     Route::post('/management/role/undo/blogger/{id}', [ManagementController::class, 'blogger_grade_down'])->name('management.role.blogger.down');
     // user grade down
     Route::post('/management/role/undo/user/{id}', [ManagementController::class, 'user_grade_down'])->name('management.role.user.down');
-     // user block list
-     Route::get('/management/block/list', [ManagementController::class, 'block_list'])->name('management.block.list');
+
+    // user block list
+    Route::get('/management/block/list', [ManagementController::class, 'block_list'])->name('management.block.list');
+     // delete block user
+     Route::get('/management/block/delete/{id}', [ManagementController::class, 'block_delete'])->name('block.delete');
+
 });
 
 

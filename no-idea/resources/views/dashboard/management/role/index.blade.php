@@ -103,9 +103,9 @@ Management's
                                                 </form>
                                             </td>
                                             <td>
-                                                <a href="" class="btn btn-info btn-sm"><i
+                                                <a href="{{  route('user.edit', $user->id) }}" class="btn btn-info btn-sm"><i
                                                         class="fa-regular fa-pen-to-square"></i></a>
-                                                <a href="" class="btn btn-danger btn-sm"><i
+                                                <a href="{{  route('user.delete', $user->id) }}" class="btn btn-danger btn-sm"><i
                                                         class="fa-regular fa-trash-can"></i></a>
                                             </td>
                                         @endif
@@ -164,9 +164,9 @@ Management's
                                                 </form>
                                             </td>
                                             <td>
-                                                <a href="" class="btn btn-info btn-sm"><i
+                                                <a href="{{  route('blogger.edit', $blogger->id) }}" class="btn btn-info btn-sm"><i
                                                         class="fa-regular fa-pen-to-square"></i></a>
-                                                <a href="" class="btn btn-danger btn-sm"><i
+                                                <a href="{{  route('blogger.delete', $blogger->id) }}" class="btn btn-danger btn-sm"><i
                                                         class="fa-regular fa-trash-can"></i></a>
                                             </td>
                                         @endif

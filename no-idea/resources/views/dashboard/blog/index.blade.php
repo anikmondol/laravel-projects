@@ -39,7 +39,7 @@
                                     </td>
                                     <td>{{ $blog->title }}</td>
                                     <td>
-                                        {{ $blog->one_category->title }}
+                                        {{ optional($blog->one_category)->title ?? 'No Category' }}
                                     </td>
                                     <td>
                                         <form id="status_id{{ $blog->id }}"
