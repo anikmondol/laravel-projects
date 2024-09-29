@@ -3,3 +3,9 @@
     width: 120px;
     object-fit: cover;
 }
+
+.blog-thumbnail{
+    width: 250px;
+    height: 100%;
+    object-fit: cover;
+}

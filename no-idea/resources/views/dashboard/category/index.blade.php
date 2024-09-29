@@ -29,7 +29,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @forelse ($categories as $category)
                                 <tr>
                                     <th scope="row">
                                         {{ $loop->index + 1 }}
@@ -59,7 +59,11 @@
                                             class="btn btn-danger btn-sm"><i class="fa-regular fa-trash-can"></i></a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-danger text-center">no category found!</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div> <!-- end table-responsive-->

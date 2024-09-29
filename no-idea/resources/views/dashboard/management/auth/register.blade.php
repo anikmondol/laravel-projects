@@ -11,7 +11,7 @@
 
 <div class="row">
     {{-- Role & User Registration --}}
-    <div class="col-xl-6">
+    <div class="col-xl-5">
         <div class="card">
             <div class="card-body">
                 <h5 class="header-title">Role & User Registration</h5>
@@ -75,7 +75,7 @@
     </div>
 
     {{-- show data --}}
-    <div class="col-lg-6">
+    <div class="col-lg-7">
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title">Management'S Table</h4>
@@ -126,7 +126,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-danger text-center">no blogger found!</td>
+                                    <td colspan="6" class="text-danger text-center">no manager found!</td>
                                 </tr>
                             @endforelse
                         </tbody>

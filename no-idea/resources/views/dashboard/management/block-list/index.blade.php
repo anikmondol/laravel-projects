@@ -56,7 +56,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-danger text-center">no blogger found!</td>
+                                    <td colspan="6" class="text-danger text-center">no block found!</td>
                                 </tr>
                             @endforelse
                         </tbody>

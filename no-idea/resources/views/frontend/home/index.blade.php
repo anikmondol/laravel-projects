@@ -1,103 +1,7 @@
+@extends('layouts.master')
 
-<!doctype html>
-<html lang="en">
 
-<head>
-    <!-- Meta -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- favicon -->
-    <link rel="icon" sizes="16x16" href="assets/img/favicon.png">
-
-    <!-- Title -->Stay Connected
-    <title> Oredoo - Personal Blog HTML Template </title>
-
-    <!-- CSS Plugins -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="assets/css/line-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-
-    <!-- main style -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
-</head>
-
-<body>
-    <!--loading -->
-    <div class="loader">
-        <div class="loader-element"></div>
-    </div>
-
-    <!-- Header-->
-    <header class="header navbar-expand-lg fixed-top ">
-        <div class="container-fluid ">
-            <div class="header-area ">
-                <!--logo-->
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="assets/img/logo/logo-dark.png" alt="" class="logo-dark">
-                        <img src="assets/img/logo/logo-white.png" alt="" class="logo-white">
-                    </a>
-                </div>
-                <div class="header-navbar">
-                    <nav class="navbar">
-                        <!--navbar-collapse-->
-                        <div class="collapse navbar-collapse" id="main_nav">
-                            <ul class="navbar-nav ">
-                                <li class="nav-item ">
-                                    <a class="nav-link active" href="index.html"> Home </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="blog.html"> Blogs </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="author.html"> Authors </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.html"> About </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html"> Contact </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--/-->
-                    </nav>
-                </div>
-
-                <!--header-right-->
-                <div class="header-right ">
-                    <!--theme-switch-->
-                    <div class="theme-switch-wrapper">
-                        <label class="theme-switch" for="checkbox">
-                            <input type="checkbox" id="checkbox" />
-                            <span class="slider round ">
-                                <i class="lar la-sun icon-light"></i>
-                                <i class="lar la-moon icon-dark"></i>
-                            </span>
-                        </label>
-                    </div>
-
-                    <!--search-icon-->
-                    <div class="search-icon">
-                        <i class="las la-search"></i>
-                    </div>
-                    <!--button-subscribe-->
-                    <div class="botton-sub">
-                        <a href="signup.html" class="btn-subscribe">Sign Up</a>
-                    </div>
-                    <!--navbar-toggler-->
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+@section('content')
 
     <!-- blog-slider-->
     <section class="blog blog-home4 d-flex align-items-center justify-content-center">
@@ -106,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="owl-carousel">
                         <!--post1-->
-                        <div class="blog-item" style="background-image: url('assets/img/blog/bg1.jpg')">
+                        <div class="blog-item" style="background-image: url('{{ asset('frontend') }}/assets/img/blog/bg1.jpg')">
                             <div class="blog-banner">
                                 <div class="post-overly">
                                     <div class="post-overly-content">
@@ -128,7 +32,7 @@
                         </div>
 
                         <!--post2-->
-                        <div class="blog-item" style="background-image: url('assets/img/blog/bg2.jpg')">
+                        <div class="blog-item" style="background-image: url('{{ asset('frontend') }}/assets/img/blog/bg2.jpg')">
                             <div class="blog-banner">
                                 <div class="post-overly">
                                     <div class="post-overly-content">
@@ -150,7 +54,7 @@
                         </div>
 
                         <!--post3-->
-                        <div class="blog-item" style="background-image: url('assets/img/blog/bg3.jpg')">
+                        <div class="blog-item" style="background-image: url('{{ asset('frontend') }}/assets/img/blog/bg3.jpg')">
                             <div class="blog-banner">
                                 <div class="post-overly">
                                     <div class="post-overly-content">
@@ -184,74 +88,16 @@
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="categories-items">
-                            <a class="category-item" href="#">
-                                <div class="image">
-                                    <img src="assets/img/categories/1.jpg" alt="">
-                                </div>
-                                <p>Design <span>10</span> </p>
-                            </a>
+                          @foreach ($categories as $category)
 
-                            <a class="category-item" href="#">
-                                <div class="image">
-                                    <img src="assets/img/categories/2.jpg" alt="">
-                                </div>
-                                <p>Branding <span>09</span></p>
-                            </a>
+                              <a class="category-item" href=" {{route('frontend.cat.blog', $category->slug)}} ">
+                                  <div class="image">
+                                      <img class="category-image" src="{{ asset('uploades/category') }}/{{$category->image }}" alt="">
+                                  </div>
+                                  <p>{{$category->title }}<span>{{$category->one_blog()->count() }}</span> </p>
+                              </a>
+                          @endforeach
 
-                            <a class="category-item" href="#">
-                                <div class="image">
-                                    <img src="assets/img/categories/3.jpg" alt="">
-                                </div>
-                                <p>marketing <span>11</span></p>
-                            </a>
-
-                            <a class="category-item" href="#">
-                                <div class="image">
-                                    <img src="assets/img/categories/4.jpg" alt="">
-                                </div>
-                                <p>food <span>05</span></p>
-                            </a>
-
-                            <a class="category-item" href="#">
-                                <div class="image">
-                                    <img src="assets/img/categories/5.jpg" alt="">
-                                </div>
-                                <p>technology <span>04</span></p>
-                            </a>
-
-                            <a class="category-item" href="#">
-                                <div class="image">
-                                    <img src="assets/img/categories/6.jpg" alt="">
-                                </div>
-                                <p>fashion <span>03</span></p>
-                            </a>
-
-                            <a class="category-item" href="#">
-                                <div class="image">
-                                    <img src="assets/img/categories/7.jpg" alt="">
-                                </div>
-                                <p>mobile <span>10</span></p>
-                            </a>
-
-                            <a class="category-item" href="#">
-                                <div class="image">
-                                    <img src="assets/img/categories/8.jpg" alt="">
-                                </div>
-                                <p>livestyle <span>08</span></p>
-                            </a>
-
-                            <a class="category-item" href="#">
-                                <div class="image">
-                                    <img src="assets/img/categories/9.jpg" alt="">
-                                </div>
-                                <p>healty <span>11</span></p>
-                            </a>
-                            <a class="category-item" href="#">
-                                <div class="image">
-                                    <img src="assets/img/categories/10.jpg" alt="">
-                                </div>
-                                <p>healty <span>06</span></p>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -274,7 +120,7 @@
                         <div class="post-list post-list-style4">
                             <div class="post-list-image">
                                 <a href="post-single.html">
-                                    <img src="assets/img/blog/31.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/assets/img/blog/31.jpg" alt="">
                                 </a>
                             </div>
                             <div class="post-list-content">
@@ -300,7 +146,7 @@
                         <div class="post-list post-list-style4">
                             <div class="post-list-image">
                                 <a href="post-single.html">
-                                    <img src="assets/img/blog/21.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/assets/img/blog/21.jpg" alt="">
                                 </a>
                             </div>
                             <div class="post-list-content">
@@ -326,7 +172,7 @@
                         <div class="post-list post-list-style4">
                             <div class="post-list-image">
                                 <a href="post-single.html">
-                                    <img src="assets/img/blog/32.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/assets/img/blog/32.jpg" alt="">
                                 </a>
                             </div>
                             <div class="post-list-content">
@@ -351,7 +197,7 @@
                         <div class="post-list post-list-style4">
                             <div class="post-list-image">
                                 <a href="post-single.html">
-                                    <img src="assets/img/blog/17.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/assets/img/blog/17.jpg" alt="">
                                 </a>
                             </div>
                             <div class="post-list-content">
@@ -375,7 +221,7 @@
                         <div class="post-list post-list-style4">
                             <div class="post-list-image">
                                 <a href="post-single.html">
-                                    <img src="assets/img/blog/27.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/assets/img/blog/27.jpg" alt="">
                                 </a>
                             </div>
                             <div class="post-list-content">
@@ -399,7 +245,7 @@
                         <div class="post-list post-list-style4">
                             <div class="post-list-image">
                                 <a href="post-single.html">
-                                    <img src="assets/img/blog/39.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/assets/img/blog/39.jpg" alt="">
                                 </a>
                             </div>
                             <div class="post-list-content">
@@ -423,7 +269,7 @@
                         <div class="post-list post-list-style4">
                             <div class="post-list-image">
                                 <a href="post-single.html">
-                                    <img src="assets/img/blog/30.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/assets/img/blog/30.jpg" alt="">
                                 </a>
                             </div>
                             <div class="post-list-content">
@@ -448,7 +294,7 @@
                         <div class="post-list post-list-style4">
                             <div class="post-list-image">
                                 <a href="post-single.html">
-                                    <img src="assets/img/blog/25.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/assets/img/blog/25.jpg" alt="">
                                 </a>
                             </div>
                             <div class="post-list-content">
@@ -473,7 +319,7 @@
                         <div class="post-list post-list-style4">
                             <div class="post-list-image">
                                 <a href="post-single.html">
-                                    <img src="assets/img/blog/22.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/assets/img/blog/22.jpg" alt="">
                                 </a>
                             </div>
                             <div class="post-list-content">
@@ -540,7 +386,7 @@
                                     <li class="small-post">
                                         <div class="small-post-image">
                                             <a href="post-single.html">
-                                                <img src="assets/img/blog/1.jpg" alt="">
+                                                <img src="{{ asset('frontend') }}/assets/img/blog/1.jpg" alt="">
                                                 <small class="nb">1</small>
                                             </a>
                                         </div>
@@ -557,7 +403,7 @@
                                     <li class="small-post">
                                         <div class="small-post-image">
                                             <a href="post-single.html">
-                                                <img src="assets/img/blog/5.jpg" alt="">
+                                                <img src="{{ asset('frontend') }}/assets/img/blog/5.jpg" alt="">
                                                 <small class="nb">2</small>
                                             </a>
                                         </div>
@@ -574,7 +420,7 @@
                                     <li class="small-post">
                                         <div class="small-post-image">
                                             <a href="post-single.html">
-                                                <img src="assets/img/blog/13.jpg" alt="">
+                                                <img src="{{ asset('frontend') }}/assets/img/blog/13.jpg" alt="">
                                                 <small class="nb">3</small>
 
                                             </a>
@@ -592,7 +438,7 @@
                                     <li class="small-post">
                                         <div class="small-post-image">
                                             <a href="post-single.html">
-                                                <img src="assets/img/blog/16.jpg" alt="">
+                                                <img src="{{ asset('frontend') }}/assets/img/blog/16.jpg" alt="">
                                                 <small class="nb">4</small>
                                             </a>
                                         </div>
@@ -709,121 +555,8 @@
         </div>
     </section>
 
-
-    <!--footer-->
-    <div class="footer">
-        <div class="footer-area">
-            <div class="footer-area-content">
-                <div class="container">
-                    <div class="row ">
-                        <div class="col-md-3">
-                            <div class="menu">
-                                <h6>Menu</h6>
-                                <ul>
-                                    <li><a href="#">Homepage</a></li>
-                                    <li><a href="#">about us</a></li>
-                                    <li><a href="#">contact us</a></li>
-                                    <li><a href="#">privarcy</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--newslatter-->
-                        <div class="col-md-6">
-                            <div class="newslettre">
-                                <div class="newslettre-info">
-                                    <h3>Subscribe To OurNewsletter</h3>
-                                    <p>Sign up for free and be the first to get notified about new posts.</p>
-                                </div>
-
-                                <form action="#" class="newslettre-form">
-                                    <div class="form-flex">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Your Email Adress"
-                                                required="required">
-                                        </div>
-                                        <button class="submit-btn" type="submit">
-                                            <i class="fas fa-paper-plane"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!--/-->
-                        <div class="col-md-3">
-                            <div class="menu">
-                                <h6>Follow us</h6>
-                                <ul>
-                                    <li><a href="#">facebook</a></li>
-                                    <li><a href="#">instagram</a></li>
-                                    <li><a href="#">youtube</a></li>
-                                    <li><a href="#">twitter</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--footer-copyright-->
-            <div class="footer-area-copyright">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="copyright">
-                                <p>© 2022, AssiaGroupe, All Rights Reserved.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/-->
-        </div>
-    </div>
-
-    <!--Back-to-top-->
-    <div class="back">
-        <a href="#" class="back-top">
-            <i class="las la-long-arrow-alt-up"></i>
-        </a>
-    </div>
-
-    <!--Search-form-->
-    <div class="search">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 col-md-10 m-auto">
-                    <div class="search-width">
-                        <button type="button" class="close">
-                            <i class="far fa-times"></i>
-                        </button>
-                        <form class="search-form" action="https://oredoo.assiagroupe.net/Oredoo/search.html">
-                            <input type="search" value="" placeholder="What are you looking for?">
-                            <button type="submit" class="search-btn"> search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@endsection
 
 
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
 
-
-    <!-- JS Plugins  -->
-    <script src="assets/js/theia-sticky-sidebar.js"></script>
-    <script src="assets/js/ajax-contact.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/switch.js"></script>
-    <script src="assets/js/jquery.marquee.js"></script>
-
-
-    <!-- JS main  -->
-    <script src="assets/js/main.js"></script>
-
-
-</body>
-</html>

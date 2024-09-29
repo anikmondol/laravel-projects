@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Frontend\CatBlogController;
+use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -12,8 +13,11 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes(['register' => false]);
 
 
+// frontend
+Route::get('/',[FrontendHomeController::class,'index'])->name('frontend');
+Route::get('/category/{slug}',[CatBlogController::class,'show'])->name('frontend.cat.blog');
 
-Route::get('/', [FrontendController::class, 'index'])->name('root');
+
 
 
 // dashboard

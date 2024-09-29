@@ -28,14 +28,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($blogs as $blog)
+                            @forelse ($blogs as $blog)
                                 <tr>
                                     <th scope="row">
                                         {{ $loop->index + 1 }}
                                     </th>
                                     <td>
                                         <img src="{{ asset('uploades/blog') }}/{{ $blog->thumbnail }}"
-                                            style="width:90px; height:90px;">
+                                            style="width:90px; height:90px; border-radius: 4px">
                                     </td>
                                     <td>{{ $blog->title }}</td>
                                     <td>
@@ -62,11 +62,11 @@
                                         </a>
                                         <a href="{{ route('blog.edit', $blog->id) }}" class="btn btn-info btn-sm"><i
                                                 class="fa-regular fa-pen-to-square"></i></a>
-                                        <form action="{{ route('blog.destroy', $blog->id) }}" method="POST">
+                                        <form class="d-inline-block" action="{{ route('blog.destroy', $blog->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
-                                                class="btn btn-outline-danger waves-effect waves-light">
+                                                class="btn btn-sm btn-outline-danger waves-effect waves-light">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
@@ -103,7 +103,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-danger text-center">no blogger found!</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                         {{ $blogs->links() }}
                     </table>

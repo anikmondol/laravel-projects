@@ -41,7 +41,7 @@ class BlogController extends Controller
             'category_id' => 'required',
             'thumbnail' => 'required',
             'title' => 'required',
-            'short_description' => 'required | max:300',
+            'short_description' => 'required | max:1000',
             'description' => 'required',
         ]);
 

@@ -112,7 +112,7 @@ Management's
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-danger text-center">no blogger found!</td>
+                                        <td colspan="6" class="text-danger text-center">no user found!</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -173,7 +173,7 @@ Management's
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-danger text-center">no blogger found!</td>
+                                        <td colspan="6" class="text-danger text-center">no blogger found!</td>
                                     </tr>
                                 @endforelse
                             </tbody>
