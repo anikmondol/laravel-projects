@@ -48,7 +48,7 @@ class BlogController extends Controller
         if ($request->hasFile('thumbnail')) {
             $new_name = Auth::user()->id . "-" . Str::random(4) . "." . $request->file('thumbnail')->getClientOriginalExtension();
             $image = $manager->read($request->file('thumbnail'));
-            $image->toPng()->save(base_path('public/uploades/blog/'.$new_name));
+            $image->toPng()->save(base_path('public/uploades/blog/' . $new_name));
 
 
             if ($request->slug) {
@@ -91,7 +91,7 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         $categories = Category::where('status', "active")->latest()->get();
-       return view('dashboard.blog.edit', compact('blog', 'categories'));
+        return view('dashboard.blog.edit', compact('blog', 'categories'));
     }
 
 
@@ -113,7 +113,7 @@ class BlogController extends Controller
         if ($request->hasFile('thumbnail')) {
             $new_name = Auth::user()->id . "-" . Str::random(4) . "." . $request->file('thumbnail')->getClientOriginalExtension();
             $image = $manager->read($request->file('thumbnail'));
-            $image->toPng()->save(base_path('public/uploades/blog/'.$new_name));
+            $image->toPng()->save(base_path('public/uploades/blog/' . $new_name));
 
 
             if ($request->slug) {
@@ -140,7 +140,7 @@ class BlogController extends Controller
                 ]);
                 return redirect()->route('blog.index')->with('blog_create_success', "Blog Update Complete");
             }
-        }else{
+        } else {
 
             if ($request->slug) {
                 Blog::find($blog->id)->update([
@@ -166,7 +166,6 @@ class BlogController extends Controller
                 ]);
                 return redirect()->route('blog.index')->with('blog_create_success', "Blog Update Complete");
             }
-
         }
     }
 
@@ -175,6 +174,25 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+        Blog::find($blog->id)->delete();
+        return redirect()->route('blog.index')->with('blog_create_success', 'Blog Updated Successful');
+    }
+
+
+    public  function status(Blog $blog,  Request $request)
+    {
+        if ($blog->status == 'active') {
+            $blog->update([
+                'status' => 'deactive',
+                'updated_at' => now(),
+            ]);
+            return back()->with('blog_create_success', 'Category Status Successfully Update');
+        } else {
+            $blog->update([
+                'status' => 'active',
+                'updated_at' => now(),
+            ]);
+            return back()->with('blog_create_success', 'Category Status Successfully Update');
+        }
     }
 }

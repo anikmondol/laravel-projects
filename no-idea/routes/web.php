@@ -103,8 +103,10 @@ Route::post('/category/update/{id}', [CategoryController::class, 'update'])->nam
 // category delete
 Route::get('/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 // category status
-Route::post('/category/status/{id}', [CategoryController::class, 'status'])->name('category.status');
+Route::post('/category/status/{category}', [CategoryController::class, 'status'])->name('category.status');
+
 
 
 // blog
 Route::resource('/blog', BlogController::class);
+Route::post('/blog/status/{blog}', [BlogController::class, "status"])->name('blog.change_status');

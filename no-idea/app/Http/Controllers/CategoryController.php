@@ -141,8 +141,8 @@ class CategoryController extends Controller
     }
 
     public function status($id){
+        
        $category = Category::where('id', $id)->first();
-
        if ($category->status == 'active') {
         Category::find($category->id)->update([
             'status' => 'deactive',
