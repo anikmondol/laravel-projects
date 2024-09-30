@@ -33,6 +33,7 @@
     <script src="{{ asset('dashboard') }}/assets/js/config.js"></script>
     {{-- tinymce --}}
     <script src="https://cdn.tiny.cloud/1/7yqf9i69xje1yopzk2jmj4otc9isdd92s25pq573dqnmod6x/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
 </head>
 
 <body>

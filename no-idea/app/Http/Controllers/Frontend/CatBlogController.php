@@ -14,6 +14,11 @@ class CatBlogController extends Controller
         $blogs = Blog::where('category_id', $category->id)->latest()->paginate('5');
 
         return view("frontend.Category.index", compact('category', 'blogs'));
+    }
 
+
+    public function single($id){
+        $blog = Blog::where('id', $id)->first();
+        return view('frontend.blog.single', compact('blog'));
     }
 }

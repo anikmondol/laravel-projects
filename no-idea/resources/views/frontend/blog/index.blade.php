@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-heading-2-title">
-                            <h1>{{ $category->title }}</h1>
+                            <h1>Blogs Page</h1>
                             <p class="links"><a href="index.html">Home <i class="las la-angle-right"></i></a> Blog</p>
                         </div>
                     </div>
@@ -25,12 +25,13 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    @forelse ($blogs as $blog)
-                        <!--post -->
+
+                    @foreach ($blogs as $blog)
+                        <!--post 1-->
                         <div class="post-list post-list-style2">
                             <div class="post-list-image">
                                 <a href="post-single.html">
-                                    <img class="blog-thumbnail" src="{{ asset('uploades/blog/') }}/{{ $blog->thumbnail }}"
+                                    <img class="blog-thumbnail img-fluid" src="{{ asset('uploades/blog/') }}/{{ $blog->thumbnail }}"
                                         alt="blog thumbnail image">
                                 </a>
                             </div>
@@ -45,31 +46,37 @@
                                                 alt=""></li>
                                     @else
                                         <li class="post-author-img"><img
-                                               src="{{ asset('uploades/profile/') }}/{{ $blog->one_user->image }}"
+                                                src="{{ asset('uploades/profile/') }}/{{ $blog->one_user->image }}"
                                                 alt=""></li>
                                     @endif
                                     <li class="post-author"> <a href="author.html">{{ $blog->one_user->name }}</a></li>
                                     <li class="entry-cat"> <a href="blog-layout-1.html" class="category-style-1 "> <span
-                                                class="line"></span> {{ $blog->one_user->role }}</a></li>
-                                    <li class="post-date"> <span class="line"></span>
-                                        {{ Carbon\Carbon::parse($blog->created_at)->format('F d, Y') }} </li>
+                                        class="line"></span> {{ $blog->one_user->role }}</a></li>
+                            <li class="post-date"> <span class="line"></span>
+                                {{ Carbon\Carbon::parse($blog->created_at)->format('F d, Y') }} </li>
                                 </ul>
                                 <div class="post-exerpt">
                                     <p>{!! $blog->short_description !!}</p>
                                 </div>
                                 <div class="post-btn">
-                                    <a href="{{ route('frontend.blog.single', $blog->id) }}" class="btn-read-more">Continue Reading <i
+                                    <a href=" {{ route('frontend.blog.single', $blog->id) }} " class="btn-read-more">Continue Reading <i
                                             class="las la-long-arrow-alt-right"></i></a>
                                 </div>
                             </div>
                         </div>
+                    @endforeach
 
-                    @empty
-                    @endforelse
+
+
+
+
+
+
                 </div>
             </div>
         </div>
     </section>
+
 
 
     <!--pagination-->
@@ -84,4 +91,5 @@
             </div>
         </div>
     </div>
+
 @endsection

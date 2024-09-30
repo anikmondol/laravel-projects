@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Frontend\BlogCommentController as FrontendCommentController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Frontend\CatBlogController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\Frontend\BlogController as FrontendBlogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -14,10 +16,18 @@ Auth::routes(['register' => false]);
 
 
 // frontend
-Route::get('/',[FrontendHomeController::class,'index'])->name('frontend');
-Route::get('/category/{slug}',[CatBlogController::class,'show'])->name('frontend.cat.blog');
+Route::get('/', [FrontendHomeController::class, 'index'])->name('frontend');
 
+// category
+Route::get('/category/{slug}', [CatBlogController::class, 'show'])->name('frontend.cat.blog');
+Route::get('/category/single/{id}', [CatBlogController::class, 'single'])->name('frontend.blog.single');
 
+// blogs
+Route::get('/blogs', [FrontendBlogController::class, 'index'])->name('frontend.blogs');
+Route::get('/blog/single/{id}', [FrontendBlogController::class, 'single'])->name('frontend.blog.single');
+
+// comment
+Route::post('/blog/comment/{id}', [FrontendCommentController::class, 'comment'])->name('frontend.blog.comment');
 
 
 // dashboard
@@ -74,9 +84,8 @@ Route::prefix(env('HOST_NAME'))->middleware(['rolecheck'])->group(function () {
 
     // user block list
     Route::get('/management/block/list', [ManagementController::class, 'block_list'])->name('management.block.list');
-     // delete block user
-     Route::get('/management/block/delete/{id}', [ManagementController::class, 'block_delete'])->name('block.delete');
-
+    // delete block user
+    Route::get('/management/block/delete/{id}', [ManagementController::class, 'block_delete'])->name('block.delete');
 });
 
 
