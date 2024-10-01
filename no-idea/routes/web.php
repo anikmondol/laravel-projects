@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\CatBlogController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\Frontend\BlogController as FrontendBlogController;
+use App\Http\Controllers\Frontend\GuestAuthentication;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,17 @@ Route::get('/category/single/{id}', [CatBlogController::class, 'single'])->name(
 Route::get('/blogs', [FrontendBlogController::class, 'index'])->name('frontend.blogs');
 Route::get('/blog/single/{id}', [FrontendBlogController::class, 'single'])->name('frontend.blog.single');
 
+
+
+// GuestAuthentication
+Route::get('guest/login', [GuestAuthentication::class,'login'])->name('guest.login');
+Route::post('guest/login', [GuestAuthentication::class,'login_post'])->name('guest.login');
+Route::get('guest/register', [GuestAuthentication::class,'register'])->name('guest.register');
+Route::post('guest/register', [GuestAuthentication::class,'register_post'])->name('guest.register');
+
+
+
+
 // comment
 Route::post('/blog/comment/{id}', [FrontendCommentController::class, 'comment'])->name('frontend.blog.comment');
 
@@ -36,7 +48,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-// Route::prefix("anik/mondal")->middleware(['rolecheck'])->group(function()
+
 Route::prefix(env('HOST_NAME'))->middleware(['rolecheck'])->group(function () {
 
     // management
@@ -105,6 +117,9 @@ Route::post('/home/profile/password/update', [ProfileController::class, 'passwor
 Route::post('/home/profile/image/update', [ProfileController::class, 'image_update'])->name('home.profile.image.update');
 
 
+
+Route::middleware('excess')->group(function(){
+
 // category
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
 // category insert
@@ -122,4 +137,10 @@ Route::post('/category/status/{category}', [CategoryController::class, 'status']
 
 // blog
 Route::resource('/blog', BlogController::class);
+// blog status
 Route::post('/blog/status/{blog}', [BlogController::class, "status"])->name('blog.change_status');
+// blog feature
+Route::post('/blog/feature/{blog}', [BlogController::class, "feature"])->name('blog.change_feature');
+
+
+});

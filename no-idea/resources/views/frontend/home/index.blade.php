@@ -2,79 +2,41 @@
 
 
 @section('content')
-
     <!-- blog-slider-->
     <section class="blog blog-home4 d-flex align-items-center justify-content-center">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="owl-carousel">
-                        <!--post1-->
-                        <div class="blog-item" style="background-image: url('{{ asset('frontend') }}/assets/img/blog/bg1.jpg')">
-                            <div class="blog-banner">
-                                <div class="post-overly">
-                                    <div class="post-overly-content">
-                                        <div class="entry-cat">
-                                            <a href="blog-layout-1.html" class="category-style-2">Branding</a>
-                                        </div>
-                                        <h2 class="entry-title">
-                                            <a href="post-single.html">Architecture is a visual art and the buildings
-                                                speak for them selves </a>
-                                        </h2>
-                                        <ul class="entry-meta">
-                                            <li class="post-author"> <a href="author.html">Meriam Smith</a></li>
-                                            <li class="post-date"> <span class="line"></span> Fabuary 10 ,2022</li>
-                                            <li class="post-timeread"> <span class="line"></span> 15 mins read</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!--post2-->
-                        <div class="blog-item" style="background-image: url('{{ asset('frontend') }}/assets/img/blog/bg2.jpg')">
-                            <div class="blog-banner">
-                                <div class="post-overly">
-                                    <div class="post-overly-content">
-                                        <div class="entry-cat">
-                                            <a href="blog-layout-1.html" class="category-style-2">Livestyle</a>
+                        @foreach ($features as $feature)
+                            <!--post1-->
+                            <div class="blog-item"
+                                style="background-image: url('{{ asset('uploades/blog') }}/{{ $feature->thumbnail }}')">
+                                <div class="blog-banner">
+                                    <div class="post-overly">
+                                        <div class="post-overly-content">
+                                            <div class="entry-cat">
+                                                <a href="{{ route('frontend.cat.blog', $feature->one_category->slug) }}"
+                                                    class="category-style-2">{{ $feature->one_category->title }}</a>
+                                            </div>
+                                            <h2 class="entry-title">
+                                                <a href="{{ route('frontend.cat.blog', $feature->one_category->slug) }}">{{$feature->title}}</a>
+                                            </h2>
+                                            <ul class="entry-meta">
+                                                <li class="post-author"> <a href="author.html">{{ $feature->one_user->name }}</a></li>
+                                                <li class="post-date"> <span
+                                                        class="line"></span>{{ Carbon\Carbon::parse($feature->created_at)->format('F d, Y') }}
+                                                </li>
+                                                <li class="post-timeread"> <span class="line"></span>
+                                                    {{ Carbon\Carbon::parse($feature->created_at)->diffForHumans() }}</li>
+                                            </ul>
                                         </div>
-                                        <h2 class="entry-title">
-                                            <a href="post-single.html">Styles come and go. Good design is a language,
-                                                not a style. </a>
-                                        </h2>
-                                        <ul class="entry-meta">
-                                            <li class="post-author"> <a href="author.html">Meriam Smith</a></li>
-                                            <li class="post-date"> <span class="line"></span> Fabuary 10 ,2022</li>
-                                            <li class="post-timeread"> <span class="line"></span> 15 mins read</li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
 
-                        <!--post3-->
-                        <div class="blog-item" style="background-image: url('{{ asset('frontend') }}/assets/img/blog/bg3.jpg')">
-                            <div class="blog-banner">
-                                <div class="post-overly">
-                                    <div class="post-overly-content">
-                                        <div class="entry-cat">
-                                            <a href="blog-layout-1.html" class="category-style-2">branding</a>
-                                        </div>
-                                        <h2 class="entry-title">
-                                            <a href="post-single.html">Ignoring online marketing is like opening a
-                                                business but not telling anyone </a>
-                                        </h2>
-                                        <ul class="entry-meta">
-                                            <li class="post-author"> <a href="author.html">Meriam Smith</a></li>
-                                            <li class="post-date"> <span class="line"></span> Fabuary 10 ,2022</li>
-                                            <li class="post-timeread"> <span class="line"></span> 15 mins read</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/-->
                     </div>
                 </div>
             </div>
@@ -88,15 +50,15 @@
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="categories-items">
-                          @foreach ($categories as $category)
-
-                              <a class="category-item" href=" {{route('frontend.cat.blog', $category->slug)}} ">
-                                  <div class="image">
-                                      <img class="category-image" src="{{ asset('uploades/category') }}/{{$category->image }}" alt="">
-                                  </div>
-                                  <p>{{$category->title }}<span>{{$category->one_blog()->count() }}</span> </p>
-                              </a>
-                          @endforeach
+                            @foreach ($categories as $category)
+                                <a class="category-item" href=" {{ route('frontend.cat.blog', $category->slug) }} ">
+                                    <div class="image">
+                                        <img class="category-image"
+                                            src="{{ asset('uploades/category') }}/{{ $category->image }}" alt="">
+                                    </div>
+                                    <p>{{ $category->title }}<span>{{ $category->one_blog()->count() }}</span> </p>
+                                </a>
+                            @endforeach
 
                         </div>
                     </div>
@@ -116,245 +78,37 @@
                             <p>Discover the most outstanding articles in all topics of life.</p>
                         </div>
 
-                        <!--post1-->
-                        <div class="post-list post-list-style4">
-                            <div class="post-list-image">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('frontend') }}/assets/img/blog/31.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-list-content">
-                                <ul class="entry-meta">
-                                    <li class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-1">Branding</a>
-                                    </li>
-                                    <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
-                                </ul>
-                                <h5 class="entry-title">
-                                    <a href="post-single.html">Brand is just a perception, and perception will match
-                                        reality</a>
-                                </h5>
-
-                                <div class="post-btn">
-                                    <a href="post-single.html" class="btn-read-more">Continue Reading <i
-                                            class="las la-long-arrow-alt-right"></i></a>
+                        @foreach ($blogs as $blog)
+                            <!--post1-->
+                            <div class="post-list post-list-style4">
+                                <div class="post-list-image">
+                                    <a href="{{ route('frontend.blog.single', $blog->id) }}">
+                                        <img class="blog-thumbnail img-fluid"
+                                            src="{{ asset('uploades/blog/') }}/{{ $blog->thumbnail }}"
+                                            alt="blog thumbnail image">
+                                    </a>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!--post2-->
-                        <div class="post-list post-list-style4">
-                            <div class="post-list-image">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('frontend') }}/assets/img/blog/21.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-list-content">
-                                <ul class="entry-meta">
-                                    <li class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-1">marketing</a>
-                                    </li>
-                                    <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
-                                </ul>
-                                <h5 class="entry-title">
-                                    <a href="post-single.html">Ignoring online marketing is like opening a business but
-                                        not telling anyone</a>
-                                </h5>
-
-                                <div class="post-btn">
-                                    <a href="post-single.html" class="btn-read-more">Continue Reading <i
-                                            class="las la-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--post3-->
-                        <div class="post-list post-list-style4">
-                            <div class="post-list-image">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('frontend') }}/assets/img/blog/32.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-list-content">
-                                <ul class="entry-meta">
-                                    <li class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-1">livestyle</a>
-                                    </li>
-                                    <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
-                                </ul>
-                                <h5 class="entry-title">
-                                    <a href="post-single.html">Your genetics load the gun your lifestyle pulls the
-                                        trigger.</a>
-                                </h5>
-                                <div class="post-btn">
-                                    <a href="post-single.html" class="btn-read-more">Continue Reading <i
-                                            class="las la-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--post4-->
-                        <div class="post-list post-list-style4">
-                            <div class="post-list-image">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('frontend') }}/assets/img/blog/17.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-list-content">
-                                <ul class="entry-meta">
-                                    <li class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-1">food</a>
-                                    </li>
-                                    <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
-                                </ul>
-                                <h5 class="entry-title">
-                                    <a href="post-single.html">Food is symbolic of love when words are inadequate</a>
-                                </h5>
-                                <div class="post-btn">
-                                    <a href="post-single.html" class="btn-read-more">Continue Reading <i
-                                            class="las la-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--post5-->
-                        <div class="post-list post-list-style4">
-                            <div class="post-list-image">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('frontend') }}/assets/img/blog/27.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-list-content">
-                                <ul class="entry-meta">
-                                    <li class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-1">interior</a>
-                                    </li>
-                                    <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
-                                </ul>
-                                <h5 class="entry-title">
-                                    <a href="post-single.html">A room is not a room without natural light</a>
-                                </h5>
-                                <div class="post-btn">
-                                    <a href="post-single.html" class="btn-read-more">Continue Reading <i
-                                            class="las la-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--post6-->
-                        <div class="post-list post-list-style4">
-                            <div class="post-list-image">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('frontend') }}/assets/img/blog/39.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-list-content">
-                                <ul class="entry-meta">
-                                    <li class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-1">design</a>
-                                    </li>
-                                    <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
-                                </ul>
-                                <h5 class="entry-title">
-                                    <a href="post-single.html">Everything is designed. Few things are designed well.</a>
-                                </h5>
-                                <div class="post-btn">
-                                    <a href="post-single.html" class="btn-read-more">Continue Reading <i
-                                            class="las la-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--post7-->
-                        <div class="post-list post-list-style4">
-                            <div class="post-list-image">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('frontend') }}/assets/img/blog/30.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-list-content">
-                                <ul class="entry-meta">
-                                    <li class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-1">design</a>
-                                    </li>
-                                    <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
-                                </ul>
-                                <h5 class="entry-title">
-                                    <a href="post-single.html">The function of design is letting design function</a>
-                                </h5>
-
-                                <div class="post-btn">
-                                    <a href="post-single.html" class="btn-read-more">Continue Reading <i
-                                            class="las la-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--post7-->
-                        <div class="post-list post-list-style4">
-                            <div class="post-list-image">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('frontend') }}/assets/img/blog/25.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-list-content">
-                                <ul class="entry-meta">
-                                    <li class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-1">interior</a>
-                                    </li>
-                                    <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
-                                </ul>
-                                <h5 class="entry-title">
-                                    <a href="post-single.html">The best rooms have something to say about the people who
-                                        live in them.</a>
-                                </h5>
-                                <div class="post-btn">
-                                    <a href="post-single.html" class="btn-read-more">Continue Reading <i
-                                            class="las la-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--post8-->
-                        <div class="post-list post-list-style4">
-                            <div class="post-list-image">
-                                <a href="post-single.html">
-                                    <img src="{{ asset('frontend') }}/assets/img/blog/22.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-list-content">
-                                <ul class="entry-meta">
-                                    <li class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-1">marketing</a>
-                                    </li>
-                                    <li class="post-date"> <span class="line"></span> february 10 ,2022</li>
-                                </ul>
-                                <h5 class="entry-title">
-                                    <a href="post-single.html">The best marketing doesn't feel like marketing</a>
-                                </h5>
-
-                                <div class="post-btn">
-                                    <a href="post-single.html" class="btn-read-more">Continue Reading <i
-                                            class="las la-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--pagination-->
-                        <div class="pagination">
-                            <div class="pagination-area">
-                                <div class="pagination-list">
-                                    <ul class="list-inline">
-                                        <li><a href="#"><i class="las la-arrow-left"></i></a></li>
-                                        <li><a href="#" class="active">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#"><i class="las la-arrow-right"></i></a></li>
+                                <div class="post-list-content">
+                                    <ul class="entry-meta">
+                                        <li class="entry-cat">
+                                            <a
+                                                href="{{ route('frontend.cat.blog', $blog->one_category->slug) }}">{{ $blog->one_category->title }}</a>
+                                        </li>
+                                        <li class="post-date"> <span class="line"></span>
+                                            {{ Carbon\Carbon::parse($blog->created_at)->format('F d, Y') }}</li>
                                     </ul>
+                                    <h5 class="entry-title">
+                                        <a href="{{ route('frontend.blog.single', $blog->id) }}">{{ $blog->title }}</a>
+                                    </h5>
+
+                                    <div class="post-btn">
+                                        <a href="{{ route('frontend.blog.single', $blog->id) }}"
+                                            class="btn-read-more">Continue Reading <i
+                                                class="las la-long-arrow-alt-right"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
 
@@ -554,9 +308,4 @@
             </div>
         </div>
     </section>
-
 @endsection
-
-
-
-

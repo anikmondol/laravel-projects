@@ -79,16 +79,16 @@ class ProfileController extends Controller
 
         if ($request->hasFile('image')) {
             if (Auth::user()->image) {
-                $oldpath = base_path('public/uploades/profile/' . Auth::user()->image);
+                $oldpath = base_path('public/uploades/profile/'.Auth::user()->image);
                 if (file_exists($oldpath)) {
                     unlink($oldpath);
                 }
             }
 
 
-            $new_name = Auth::user()->id . '-' . now()->format('M d, y') . '-' . rand(0, 9999) . '.' . $request->file('image')->getClientOriginalExtension();
+            $new_name = Auth::user()->id.'-'.now()->format('M d, y').'-'.rand(0, 9999).'.'.$request->file('image')->getClientOriginalExtension();
             $image = $manager->read($request->file('image'));
-            $image->toPng()->save(base_path('public/uploades/profile/' . $new_name));
+            $image->toPng()->save(base_path('public/uploades/profile/'.$new_name));
             User::find(auth()->user()->id)->update([
                 'image' => $new_name,
                 'updated_at' => now(),

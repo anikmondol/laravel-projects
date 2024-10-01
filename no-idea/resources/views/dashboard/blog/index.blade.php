@@ -24,6 +24,7 @@
                                 <th>Title</th>
                                 <th>Category Title</th>
                                 <th>Status</th>
+                                <th>Feature</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -51,10 +52,21 @@
                                                     class="form-check-input" type="checkbox" role="switch"
                                                     id="flexSwitchCheckChecked"
                                                     {{ $blog->status == 'active' ? 'checked' : '' }}>
-                                                <label class="form-check-label"
-                                                    for="flexSwitchCheckChecked">{{ $blog->status }}</label>
                                             </div>
                                         </form>
+                                    </td>
+                                    <td>
+                                        <form id="feature{{ $blog->id }}"
+                                            action="{{ route('blog.change_feature', $blog->id) }}" method="POST">
+                                            @csrf
+                                            <div class="form-check form-switch">
+                                                <input
+                                                    onchange="document.querySelector('#feature{{ $blog->id }}').submit()"
+                                                    class="form-check-input" type="checkbox" role="switch"
+                                                    id="flexSwitchCheckChecked"  {{ $blog->feature == true ? 'checked' : '' }}>
+                                            </div>
+                                        </form>
+                                    </td>
                                     <td>
                                         <a href="javascript:void(0)" data-bs-toggle="modal"
                                             data-bs-target="#showSumon{{ $blog->id }}" class="btn btn-info btn-sm">

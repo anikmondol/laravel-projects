@@ -195,4 +195,22 @@ class BlogController extends Controller
             return back()->with('blog_create_success', 'Category Status Successfully Update');
         }
     }
+
+    public  function feature(Blog $blog,  Request $request)
+    {
+        if ($blog->feature == true) {
+            $blog->update([
+                'feature' => false,
+                'updated_at' => now(),
+            ]);
+            return back()->with('blog_create_success', 'Feature False Successfully Update');
+        } else {
+            $blog->update([
+                'feature' => true,
+                'updated_at' => now(),
+            ]);
+            return back()->with('blog_create_success', 'Feature True Successfully Update');
+        }
+    }
+
 }

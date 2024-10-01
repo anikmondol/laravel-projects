@@ -41,7 +41,7 @@
                             <h4> Full Description </h4>
 
                             <p>{!! $blog->description !!}</p>
-                            
+
                         </div>
 
                         <!--post-single-bottom-->
@@ -153,61 +153,86 @@
                             <h4>3 Comments</h4>
                             <ul class="comments">
                                 <!--comment1-->
-                                <li class="comment-item pt-0">
-                                    <img src="{{ asset('frontend') }}/assets/img/other/user1.jpg" alt="">
-                                    <div class="content">
-                                        <div class="meta">
-                                            <ul class="list-inline">
-                                                <li><a href="#">Nirmaine Nicole</a> </li>
-                                                <li class="slash"></li>
-                                                <li>3 Months Ago</li>
-                                            </ul>
+                                @foreach ($comments as $comment)
+                                    <li class="comment-item ">
+                                        @if ($comment->one_user->image == 'default.jpg')
+                                            <img class="comment_user_image"
+                                                src="{{ Avatar::create($comment->one_user->name)->toBase64() }}"
+                                                alt="">
+                                        @else
+                                            <img class="comment_user_image"
+                                                src="{{ asset('uploades/profile') }}/{{ $comment->one_user->image }}"
+                                                alt="">
+                                        @endif
+                                        <div class="content">
+                                            <div class="meta">
+                                                <ul class="list-inline">
+                                                    <li><a href="#">{{ $comment->name }}</a> </li>
+                                                    <li class="slash"></li>
+                                                    <li>{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <p>{{ $comment->comment }}
+                                            </p>
+                                            <a href="#comment" onclick="myFun({{ $comment->id }})" class="btn-reply"><i
+                                                    class="las la-reply"></i> Reply</a>
                                         </div>
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus at
-                                            doloremque adipisci eum placeat
-                                            quod non fugiat aliquid sit similique!
-                                        </p>
-                                        <a href="#" class="btn-reply"><i class="las la-reply"></i> Reply</a>
-                                    </div>
+                                    </li>
+                                    @foreach ($comment->replies as $reply)
+                                        <li class="comment-item pl-3">
+                                            @if ($comment->one_user->image == 'default.jpg')
+                                                <img class="comment_user_image"
+                                                    src="{{ Avatar::create($reply->one_user->name)->toBase64() }}"
+                                                    alt="">
+                                            @else
+                                                <img class="comment_user_image"
+                                                    src="{{ asset('uploades/profile') }}/{{ $reply->one_user->image }}"
+                                                    alt="">
+                                            @endif
+                                            <div class="content">
+                                                <div class="meta">
+                                                    <ul class="list-inline">
+                                                        <li><a href="#">{{ $reply->name }}</a> </li>
+                                                        <li class="slash"></li>
+                                                        <li>{{ Carbon\Carbon::parse($reply->created_at)->diffForHumans() }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <p>{{ $reply->comment }}</p>
+                                                <a href="#comment" onclick="myFun({{ $reply->id }})"
+                                                    class="btn-reply"><i class="las la-reply"></i> Reply</a>
+                                            </div>
+                                        </li>
 
-                                </li>
-                                <!--comment2-->
-                                <li class="comment-item">
-                                    <img src="{{ asset('frontend') }}/assets/img/other/use2.jpg" alt="">
-                                    <div class="content">
-                                        <div class="meta">
-                                            <ul class="list-inline">
-                                                <li><a href="#">adam smith</a> </li>
-                                                <li class="slash"></li>
-                                                <li>3 Months Ago</li>
-                                            </ul>
-                                        </div>
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus at
-                                            doloremque adipisci eum placeat
-                                            quod non fugiat aliquid sit similique!
-                                        </p>
-                                        <a href="#" class="btn-reply"><i class="las la-reply"></i> Reply</a>
-                                    </div>
-                                </li>
-                                <!--comment3-->
-                                <li class="comment-item">
-                                    <img src="{{ asset('frontend') }}/assets/img/other/user3.jpg" alt="">
-                                    <div class="content">
-                                        <div class="meta">
-                                            <ul class="list-inline">
-                                                <li><a href="#">Emma david</a> </li>
-                                                <li class="slash"></li>
-                                                <li>3 Months Ago</li>
-                                            </ul>
-                                        </div>
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus at
-                                            doloremque adipisci eum placeat
-                                            quod non fugiat aliquid sit similique!
-                                        </p>
-                                        <a href="#" class="btn-reply"><i class="las la-reply"></i> Reply</a>
-                                    </div>
-                                </li>
+                                        @foreach ($reply->replies as $t)
+                                            <li class="comment-item pl-5">
+                                                @if ($comment->one_user->image == 'default.jpg')
+                                                    <img class="comment_user_image"
+                                                        src="{{ Avatar::create($t->one_user->name)->toBase64() }}"
+                                                        alt="">
+                                                @else
+                                                    <img class="comment_user_image"
+                                                        src="{{ asset('uploades/profile') }}/{{ $t->one_user->image }}"
+                                                        alt="">
+                                                @endif
+                                                <div class="content">
+                                                    <div class="meta">
+                                                        <ul class="list-inline">
+                                                            <li><a href="#">{{ $t->name }}</a> </li>
+                                                            <li class="slash"></li>
+                                                            <li>{{ Carbon\Carbon::parse($t->created_at)->diffForHumans() }}
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <p>{{ $t->comment }}
+                                                    </p>
+                                                </div>
 
+                                            </li>
+                                        @endforeach
+                                    @endforeach
+                                @endforeach
                             </ul>
                             <!--Leave-comments-->
                             <div class="comments-form">

@@ -164,7 +164,7 @@
                                                     <img class="comment_user_image" src="{{ Avatar::create($reply->one_user->name)->toBase64() }}"
                                                         alt="">
                                                 @else
-                                                    <img class="comment_user_image" src="{{ asset('uploads/profile') }}/{{ $reply->one_user->image }}"
+                                                    <img class="comment_user_image" src="{{ asset('uploades/profile') }}/{{ $reply->one_user->image }}"
                                                         alt="">
                                                 @endif
                                                 <div class="content">
@@ -176,46 +176,44 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <p>{{ $reply->comment }}
-                                                    </p>
+                                                    <p>{{ $reply->comment }}</p>
                                                     <a href="#comment" onclick="myFun({{ $reply->id }})"
                                                         class="btn-reply"><i class="las la-reply"></i> Reply</a>
                                                 </div>
-
                                             </li>
+
                                             @foreach ($reply->replies as $t)
-                                            <li class="comment-item pl-5">
-                                                @if ($t->one_user->image == 'default.jpg')
-                                                    <img class="comment_user_image" src="{{ Avatar::create($t->one_user->name)->toBase64() }}"
-                                                        alt="">
-                                                @else
-                                                    <img class="comment_user_image" src="{{ asset('uploads/profile') }}/{{ $t->one_user->image }}"
-                                                        alt="">
-                                                @endif
-                                                <div class="content">
-                                                    <div class="meta">
-                                                        <ul class="list-inline">
-                                                            <li><a href="#">{{ $t->name }}</a> </li>
-                                                            <li class="slash"></li>
-                                                            <li>{{ Carbon\Carbon::parse($t->created_at)->diffForHumans() }}
-                                                            </li>
-                                                        </ul>
+                                                <li class="comment-item pl-5">
+                                                    @if ($t->one_user->image == 'default.jpg')
+                                                        <img class="comment_user_image" src="{{ Avatar::create($t->one_user->name)->toBase64() }}"
+                                                            alt="">
+                                                    @else
+                                                        <img class="comment_user_image" src="{{ asset('uploades/profile') }}/{{ $t->one_user->image }}"
+                                                            alt="">
+                                                    @endif
+                                                    <div class="content">
+                                                        <div class="meta">
+                                                            <ul class="list-inline">
+                                                                <li><a href="#">{{ $t->name }}</a> </li>
+                                                                <li class="slash"></li>
+                                                                <li>{{ Carbon\Carbon::parse($t->created_at)->diffForHumans() }}
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <p>{{ $t->comment }}
+                                                        </p>
                                                     </div>
-                                                    <p>{{ $t->comment }}
-                                                    </p>
-                                                </div>
 
-                                            </li>
+                                                </li>
                                             @endforeach
                                         @endforeach
                                     @endforeach
-
-
                                 </ul>
 
                                 <!--Leave-comments-->
                                 <div class="comments-form" id="comment">
                                     <h4>Leave a Reply</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, rem? Doloribus, dolorum asperiores sit ea consequatur suscipit recusandae quos, voluptatem sunt magni minus natus pariatur labore.</p>
                                     <!--form-->
                                     <form class="form " action="{{ route('frontend.blog.comment', $blog->id) }}"
                                         method="POST" id="main_contact_form">
