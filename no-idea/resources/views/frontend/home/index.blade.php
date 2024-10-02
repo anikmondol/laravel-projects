@@ -50,7 +50,8 @@
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="categories-items">
-                            @foreach ($categories as $category)
+
+                             @foreach ($categories as $category)
                                 <a class="category-item" href=" {{ route('frontend.cat.blog', $category->slug) }} ">
                                     <div class="image">
                                         <img class="category-image"
@@ -58,7 +59,8 @@
                                     </div>
                                     <p>{{ $category->title }}<span>{{ $category->one_blog()->count() }}</span> </p>
                                 </a>
-                            @endforeach
+                             @endforeach
+
 
                         </div>
                     </div>

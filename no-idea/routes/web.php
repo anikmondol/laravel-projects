@@ -9,6 +9,7 @@ use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\Frontend\BlogController as FrontendBlogController;
 use App\Http\Controllers\Frontend\GuestAuthentication;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RequestController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,10 +31,10 @@ Route::get('/blog/single/{id}', [FrontendBlogController::class, 'single'])->name
 
 
 // GuestAuthentication
-Route::get('guest/login', [GuestAuthentication::class,'login'])->name('guest.login');
-Route::post('guest/login', [GuestAuthentication::class,'login_post'])->name('guest.login');
-Route::get('guest/register', [GuestAuthentication::class,'register'])->name('guest.register');
-Route::post('guest/register', [GuestAuthentication::class,'register_post'])->name('guest.register');
+Route::get('guest/login', [GuestAuthentication::class, 'login'])->name('guest.login');
+Route::post('guest/login', [GuestAuthentication::class, 'login_post'])->name('guest.login');
+Route::get('guest/register', [GuestAuthentication::class, 'register'])->name('guest.register');
+Route::post('guest/register', [GuestAuthentication::class, 'register_post'])->name('guest.register');
 
 
 
@@ -46,11 +47,18 @@ Route::post('/blog/comment/{id}', [FrontendCommentController::class, 'comment'])
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 
+// request
+Route::post('/role/request/{id}', [RequestController::class, 'request_sent'])->name('request.sent');
+// request accept
+Route::get('/role/request/accept/{id}', [RequestController::class, 'request_accept'])->name('request.accept');
+// request cancel
+Route::get('/role/request/cancel/{id}', [RequestController::class, 'request_cancel'])->name('request.cancel');
+// request show
+Route::get('/role/request', [RequestController::class, 'request_show'])->name('request.show');
 
 
 
 Route::prefix(env('HOST_NAME'))->middleware(['rolecheck'])->group(function () {
-
     // management
     Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
     // management user register
@@ -118,29 +126,27 @@ Route::post('/home/profile/image/update', [ProfileController::class, 'image_upda
 
 
 
-Route::middleware('excess')->group(function(){
+Route::middleware('excess')->group(function () {
 
-// category
-Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
-// category insert
-Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
-// category edit
-Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-// category update
-Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
-// category delete
-Route::get('/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
-// category status
-Route::post('/category/status/{category}', [CategoryController::class, 'status'])->name('category.status');
-
-
-
-// blog
-Route::resource('/blog', BlogController::class);
-// blog status
-Route::post('/blog/status/{blog}', [BlogController::class, "status"])->name('blog.change_status');
-// blog feature
-Route::post('/blog/feature/{blog}', [BlogController::class, "feature"])->name('blog.change_feature');
+    // category
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    // category insert
+    Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+    // category edit
+    Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    // category update
+    Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+    // category delete
+    Route::get('/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+    // category status
+    Route::post('/category/status/{category}', [CategoryController::class, 'status'])->name('category.status');
 
 
+
+    // blog
+    Route::resource('/blog', BlogController::class);
+    // blog status
+    Route::post('/blog/status/{blog}', [BlogController::class, "status"])->name('blog.change_status');
+    // blog feature
+    Route::post('/blog/feature/{blog}', [BlogController::class, "feature"])->name('blog.change_feature');
 });

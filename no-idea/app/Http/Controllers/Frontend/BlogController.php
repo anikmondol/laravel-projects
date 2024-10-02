@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class BlogController extends Controller
 {
     public function index(){
-        $blogs = Blog::latest()->paginate(5);
+        $blogs = Blog::where('status', 'active')->paginate(5);
         return view('frontend.blog.index', compact('blogs'));
     }
 

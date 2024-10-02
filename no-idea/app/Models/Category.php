@@ -21,4 +21,6 @@ class Category extends Model
         return $this->hasOne(Blog::class,'category_id','id');
     }
 
+    
+
 }

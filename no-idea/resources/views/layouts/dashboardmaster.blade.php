@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title> @yield("index-title") | Dashtrap - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title> @yield('index-title') | Dashtrap - Responsive Bootstrap 5 Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Myra Studio" name="author" />
@@ -32,7 +32,8 @@
     <link href="{{ asset('dashboard') }}/assets/css/app.css" rel="stylesheet" type="text/css">
     <script src="{{ asset('dashboard') }}/assets/js/config.js"></script>
     {{-- tinymce --}}
-    <script src="https://cdn.tiny.cloud/1/7yqf9i69xje1yopzk2jmj4otc9isdd92s25pq573dqnmod6x/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/7yqf9i69xje1yopzk2jmj4otc9isdd92s25pq573dqnmod6x/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
 
 </head>
 
@@ -103,6 +104,22 @@
                                 </ul>
                             </div>
                         </li>
+                        <li class="menu-item">
+                            <a href="#menuRequest" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
+                                <span class="menu-icon"><i class="fa-solid fa-code-pull-request"></i></span>
+                                <span class="menu-text"> Blogger Request's </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="menuRequest">
+                                <ul class="sub-menu">
+                                    <li class="menu-item">
+                                        <a class='menu-link' href='{{ route('request.show') }}'>
+                                            <span class="menu-text">Show Request's</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     @endif
 
                     <li class="menu-item">
@@ -112,47 +129,48 @@
                         </a>
                     </li>
 
-                   @if (Auth::user()->role == 'admin' || Auth::user()->role == 'manager' || Auth::user()->role == 'blogger')
-                     <li class="menu-item">
-                         <a href="#menucategory" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
-                             <span class="menu-icon"><i class="bx bx-file"></i></span>
-                             <span class="menu-text"> Categories </span>
-                             <span class="menu-arrow"></span>
-                         </a>
-                         <div class="collapse" id="menucategory">
-                             <ul class="sub-menu">
-                                 <li class="menu-item">
-                                     <a class='menu-link' href='{{ route('category.index') }}'>
-                                         <span class="menu-text">Show Categories</span>
-                                     </a>
-                                 </li>
-                             </ul>
-                         </div>
-                     </li>
+                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'manager' || Auth::user()->role == 'blogger')
+                        <li class="menu-item">
+                            <a href="#menucategory" data-bs-toggle="collapse"
+                                class="menu-link waves-effect waves-light">
+                                <span class="menu-icon"><i class="bx bx-file"></i></span>
+                                <span class="menu-text"> Categories </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="menucategory">
+                                <ul class="sub-menu">
+                                    <li class="menu-item">
+                                        <a class='menu-link' href='{{ route('category.index') }}'>
+                                            <span class="menu-text">Show Categories</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
-                     <li class="menu-item">
-                         <a href="#menuBlog" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
-                             <span class="menu-icon"><i class="fa-solid fa-blog"></i></span>
-                             <span class="menu-text"> Blog's Pages </span>
-                             <span class="menu-arrow"></span>
-                         </a>
-                         <div class="collapse" id="menuBlog">
-                             <ul class="sub-menu">
-                                 <li class="menu-item">
-                                     <a class='menu-link' href='{{ route('blog.index') }}'>
-                                         <span class="menu-text">Show Blog's</span>
-                                     </a>
-                                 </li>
-                                 <li class="menu-item">
-                                     <a class='menu-link' href='{{ route('blog.create') }}'>
-                                         <span class="menu-text">Create Blog's</span>
-                                     </a>
-                                 </li>
+                        <li class="menu-item">
+                            <a href="#menuBlog" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
+                                <span class="menu-icon"><i class="fa-solid fa-blog"></i></span>
+                                <span class="menu-text"> Blog's Pages </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="menuBlog">
+                                <ul class="sub-menu">
+                                    <li class="menu-item">
+                                        <a class='menu-link' href='{{ route('blog.index') }}'>
+                                            <span class="menu-text">Show Blog's</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a class='menu-link' href='{{ route('blog.create') }}'>
+                                            <span class="menu-text">Create Blog's</span>
+                                        </a>
+                                    </li>
 
-                             </ul>
-                         </div>
-                     </li>
-                   @endif
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
 
                 </ul>
             </div>
