@@ -76,7 +76,7 @@ Once the server is running, you can access Oredoo via [http://localhost:8000](ht
 ## Technologies Used
 
 - **[Laravel](https://laravel.com/)**: Backend framework for robust Blog management and routing.
-- - **[JavaScript]([https://laravel.com/](https://www.javascript.com/))**: JavaScript is essential for creating dynamic and interactive web pages.
+- **[JavaScript]([https://laravel.com/](https://www.javascript.com/))**: JavaScript is essential for creating dynamic and interactive web pages.
 - **[Boostrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)**: Utility-first CSS framework for responsive and clean UI design.
 
 ## Contributing
