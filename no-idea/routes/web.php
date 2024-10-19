@@ -12,6 +12,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 // Auth::routes(['register' => false]);
 Auth::routes(['register' => false]);
@@ -42,6 +44,7 @@ Route::post('guest/register', [GuestAuthentication::class, 'register_post'])->na
 // comment
 Route::post('/blog/comment/{id}', [FrontendCommentController::class, 'comment'])->name('frontend.blog.comment');
 
+Route::middleware(['auth','verified'])->group(function(){
 
 // dashboard
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
@@ -150,3 +153,25 @@ Route::middleware('excess')->group(function () {
     // blog feature
     Route::post('/blog/feature/{blog}', [BlogController::class, "feature"])->name('blog.change_feature');
 });
+
+});
+
+
+
+// email varifiaction routes
+
+Route::get('/email/verify', function () {
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
