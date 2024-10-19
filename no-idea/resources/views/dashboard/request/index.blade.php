@@ -1,8 +1,6 @@
 @extends('layouts.dashboardmaster')
 
-
 @section('content')
-
 
 @section('index-title')
     Request
@@ -16,13 +14,16 @@
         <div class="col-lg-4 col-xl-4">
             <!-- Simple card -->
             <div class="card">
-                @if ($request->one_user->image == 'default.jpg')
-                    <img style="width: 200px;; height: 180px; object-fit: cover; margin: 10px auto; border-radius: 5px"
-                        src="{{ asset('uploades/default') }}/{{ $request->one_user->image }}" alt="">
-                @else
-                    <img style="width: 200px;; height: 180px; object-fit: cover; margin: 10px auto; border-radius: 5px"
+                @if (isset($request->one_user) && $request->one_user->image == 'default.jpg')
+                    <img style="width: 200px; height: 180px; object-fit: cover; margin: 10px auto; border-radius: 5px"
+                        src="{{ asset('uploades/default/' . $request->one_user->image) }}" alt="">
+                @elseif (isset($request->one_user))
+                    <img style="width: 200px; height: 180px; object-fit: cover; margin: 10px auto; border-radius: 5px"
                         class="card-img-top img-fluid"
-                        src="{{ asset('uploades/profile') }}/{{ $request->one_user->image }}" alt="Card image cap">
+                        src="{{ asset('uploades/profile/' . $request->one_user->image) }}" alt="Card image cap">
+                @else
+                    <img style="width: 200px; height: 180px; object-fit: cover; margin: 10px auto; border-radius: 5px"
+                        src="{{ asset('uploades/default/default.jpg') }}" alt="Default Image">
                 @endif
                 <div class="card-body">
                     <h5 class="card-title">Feedback</h5>
@@ -37,16 +38,13 @@
     @empty
 
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Request Not Available Now 
+            Request Not Available Now
         </div>
     @endforelse
 
 </div>
 
-
 @endsection
-
-
 
 @section('script')
 @if (session('sent_feedback'))
